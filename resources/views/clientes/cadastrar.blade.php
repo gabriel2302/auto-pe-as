@@ -1,6 +1,7 @@
 @extends('base/layout')
 
 @section('conteudo')
+<<<<<<< HEAD
 
 <div class="row">
     <div class="col-md-12">
@@ -114,4 +115,7 @@
 </div>
     <!-- /.row -->
     
+=======
+<p>teste2</p>
+>>>>>>> e83a5f0ae88e7fa33faf35d032ebe6198605dc56
 @stop

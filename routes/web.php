@@ -15,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('inicio/inicio');
+<<<<<<< HEAD
+=======
+});
+
+Route::get('/clientes/cadastrar', function () {
+    return view('clientes/cadastrar');
+>>>>>>> e83a5f0ae88e7fa33faf35d032ebe6198605dc56
 });
 
 Route::get('/clientes', function () {
