@@ -7,24 +7,39 @@
     <title>AutoPeças - Pedrin</title>
 
     <!-- ========== COMMON STYLES ========== -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
-    <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
-    <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen" >
-    <link rel="stylesheet" href="css/lobipanel/lobipanel.min.css" media="screen" >
+    <link rel="stylesheet" href="/template/css/bootstrap.min.css" media="screen" >
+    <link rel="stylesheet" href="/template/css/font-awesome.min.css" media="screen" >
+    <link rel="stylesheet" href="/template/css/animate-css/animate.min.css" media="screen" >
+    <link rel="stylesheet" href="/template/css/lobipanel/lobipanel.min.css" media="screen" >
 
     <!-- ========== PAGE STYLES ========== -->
-    <link rel="stylesheet" href="css/prism/prism.css" media="screen" > <!-- USED FOR DEMO HELP - YOU CAN REMOVE IT -->
-    <link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen" >
-    <link rel="stylesheet" href="css/icheck/skins/line/blue.css" >
-    <link rel="stylesheet" href="css/icheck/skins/line/red.css" >
-    <link rel="stylesheet" href="css/icheck/skins/line/green.css" >
-    <link rel="stylesheet" href="css/bootstrap-tour/bootstrap-tour.css" >
-
+    <link rel="stylesheet" href="/template/css/prism/prism.css" media="screen" > <!-- USED FOR DEMO HELP - YOU CAN REMOVE IT -->
+    <link rel="stylesheet" href="/template/css/toastr/toastr.min.css" media="screen" >
+    <link rel="stylesheet" href="/template/css/icheck/skins/line/blue.css" >
+    <link rel="stylesheet" href="/template/css/icheck/skins/line/red.css" >
+    <link rel="stylesheet" href="/template/css/icheck/skins/line/green.css" >
+    <link rel="stylesheet" href="/template/css/bootstrap-tour/bootstrap-tour.css" >
+    <link rel="stylesheet" type="text/css" href="/template/js/DataTables/datatables.min.css"/>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" rel="stylesheet">
+    
     <!-- ========== THEME CSS ========== -->
-    <link rel="stylesheet" href="css/main.css" media="screen" >
+    <link rel="stylesheet" href="/template/css/main.css" media="screen" >
 
     <!-- ========== MODERNIZR ========== -->
-    <script src="js/modernizr/modernizr.min.js"></script>
+    <script src="/template/js/modernizr/modernizr.min.js"></script>
+    <style>
+
+.icoLojaCadastro{
+    color: #809aeb;
+    font-size: 2.5rem;
+    border: none;
+}
+
+
+}
+</style>
 </head>
 <body class="top-navbar-fixed">
     <div class="main-wrapper">
@@ -139,7 +154,7 @@
 
                 <div class="main-page">
                     <div class="container-fluid">
-                        
+                                @yield('conteudo')
                         </div>
                 </div>
 
@@ -178,31 +193,37 @@
     <!-- /.main-wrapper -->
 
     <!-- ========== COMMON JS FILES ========== -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <script src="js/jquery-ui/jquery-ui.min.js"></script>
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-    <script src="js/pace/pace.min.js"></script>
-    <script src="js/lobipanel/lobipanel.min.js"></script>
-    <script src="js/iscroll/iscroll.js"></script>
+    <script src="/template/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="/template/js/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/template/js/bootstrap/bootstrap.min.js"></script>
+    <script src="/template/js/pace/pace.min.js"></script>
+    <script src="/template/js/lobipanel/lobipanel.min.js"></script>
+    <script src="/template/js/iscroll/iscroll.js"></script>
 
     <!-- ========== PAGE JS FILES ========== -->
-    <script src="js/prism/prism.js"></script>
-    <script src="js/waypoint/waypoints.min.js"></script>
-    <script src="js/counterUp/jquery.counterup.min.js"></script>
-    <script src="js/amcharts/amcharts.js"></script>
-    <script src="js/amcharts/serial.js"></script>
-    <script src="js/amcharts/plugins/export/export.min.js"></script>
-    <link rel="stylesheet" href="js/amcharts/plugins/export/export.css" type="text/css" media="all" />
-    <script src="js/amcharts/themes/light.js"></script>
-    <script src="js/toastr/toastr.min.js"></script>
-    <script src="js/icheck/icheck.min.js"></script>
-    <script src="js/bootstrap-tour/bootstrap-tour.js"></script>
+    <script src="/template/js/prism/prism.js"></script>
+    <script src="/template/js/waypoint/waypoints.min.js"></script>
+    <script src="/template/js/counterUp/jquery.counterup.min.js"></script>
+    <script src="/template/js/amcharts/amcharts.js"></script>
+    <script src="/template/js/amcharts/serial.js"></script>
+    <script src="/template/js/amcharts/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="/template/js/amcharts/plugins/export/export.css" type="text/css" media="all" />
+    <script src="/template/js/amcharts/themes/light.js"></script>
+    <script src="/template/js/toastr/toastr.min.js"></script>
+    <script src="/template/js/icheck/icheck.min.js"></script>
+    <script src="/template/js/bootstrap-tour/bootstrap-tour.js"></script>
 
     <!-- ========== THEME JS ========== -->
-    <script src="js/main.js"></script>
-    <script src="js/production-chart.js"></script>
-    <script src="js/traffic-chart.js"></script>
-    <script src="js/task-list.js"></script>
+    <script src="/template/js/main.js"></script>
+    <script src="/template/js/production-chart.js"></script>
+    <script src="/template/js/traffic-chart.js"></script>
+    <script src="/template/js/task-list.js"></script>
+    <script src="/template/js/DataTables/datatables.min.js"></script>
+    <script>
+           $(document).ready(function() {
+            $('#example').DataTable();
+            } );
+        </script>
     <script>
         $(function(){
 

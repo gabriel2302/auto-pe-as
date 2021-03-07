@@ -1,49 +1,62 @@
-# Auto Peças
-Sistema de auto peças ( Desenvolvido como atividade da matéria de Projeto de Sistemas de Informação) SI - UEMG-Frutal
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-# Sistema de Venda de Auto Peças
+## About Laravel
 
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-# Projeto
-O sistema de Venda de Auto Peças, consiste no gerenciamento de produtos, vendas, clientes, funcionários bem como o controle de estoque. O sistema também deve emitir relatórios e consultas, possibilitando um melhor gerenciamento dos produtos do estabelecimento. 
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-# Requisitos Funcionais e Regras de negócio
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-* RF1. Produtos - O sistema deve permitir incluir, alterar e excluir produtos, com os seguintes atributos: nome, descrição, quantidade, valor, categoria e marca.
-  * RN.1.1 - As funções do cadastro de produtos só podem ser acessadas pelo administrador do sistema.
-  * RN.1.2 - Caso não houver nenhuma categoria cadastrada, deverá ser cadastrada um valor padrão para a categoria.
-    
-* RF2. Parâmetros - O sistema deve permitir incluir, alterar e excluir que auxiliem no funcionamento de operações.
-  * RF.2.1 - O sistema deve permitir incluir, alterar e excluir categorias de produto com o seguinte atributo: nome.
-  * RF.2.2 - O sistema deve permitir incluir, alterar e excluir marcas de produto com o seguinte atributo: nome.
-  * RF.2.3 - O sistema deve permitir a funcionalidade  de alteração do valor de limite de crédito que incidirá sobre o cadastro dos clientes.
-  * RF.2.4 - O sistema deve permitir a funcionalidade de alteração da porcentagem de comissão que incidirá sobre as vendas dos usuários do tipo vendedor.
-  * RF.2.5 - O sistema deve permitir a funcionalidade de alteração da porcentagem de desconto que incidirá sobre o valor total da venda.
+## Learning Laravel
 
-* RF3. Vendas - O sistema deve permitir incluir, alterar e excluir vendas com os seguintes atributos: data, produtos, valor unitário, valor total, desconto, cliente, vendedor e valor da comissão.
-  * RN.3.1 - O sistema deve permitir a aplicação de desconto em relação ao valor final da venda conforme pré-estabelecido.
-  * RN.3.2 - O sistema deve exigir que uma venda esteja vinculada a um cliente e um vendedor.
-  * RN.3.3 - O sistema deve permitir as seguintes formas de pagamento: dinheiro, cartão e crédito interno.
-  * RN.3.4 - Ao realizar o pagamento de uma venda utilizando o crédito interno, é necessário que o sistema verifique se há crédito disponível no cadastro do cliente para autorizar a compra.
-  * RN.3.5 - O sistema deve permitir consultar as vendas utilizando um filtro por período, possibilitando gerar relatórios com as seguintes informações: número da venda, cliente e valor total.
-  * RN.3.6 - O sistema deve permitir a exclusão lógica de uma venda.
-  * RN.3.7 - O sistema deve permitir a alteração ou exclusão de uma venda, desde que esteja dentro do prazo de 7 (sete) dias a contar da data em que a mesma foi realizada, conforme prazo estabelecido pelo Código de Defesa do Consumidor.
-  * RN.3.8 - O sistema deve atribuir ao cliente um crédito caso a venda tenha sido cancelada.
-  * RN.3.9 - O sistema deve atualizar a quantidade disponível dos produtos que foram vendidos.
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-* RF4. Clientes - O sistema deve permitir incluir, alterar e excluir clientes. Os clientes devem ser pessoa física e jurídica. Dessa forma, para pessoa física são necessários os seguintes atributos: nome, CPF, endereço, telefone, celular, WhatsApp e email. Entretanto, para pessoa jurídica são os atributos: nome fantasia, razão social, CNPJ, endereço, telefone, celular, WhatsApp e email.
-  * RN.4.1 - Ao realizar a inclusão de um cliente, terá atribuído um crédito já pré-estabelecido para realizar compras a prazo.
-  * RN.4.2 - O sistema deve verificar se o cliente já está cadastrado antes de iniciar o cadastro realizando a busca por CPF ou CNPJ.
-  * RN.4.3 - O sistema deve gerar relatórios com as informações dos clientes.
-  * RN.4.4 - O sistema deve permitir a exclusão lógica de um cliente, entretanto, ocorrerá a exclusão física caso o cliente não possua nenhum cadastro vinculado.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-* RF5. Usuários - O sistema deve permitir incluir, alterar e excluir usuários com os seguintes atributos: nome, CPF, endereço, telefone, celular, WhatsApp, email, senha e função.
-  * RN.5.1 - O sistema deve verificar se o usuário já está cadastrado antes de iniciar o cadastro.
-  * RN.5.2 - O sistema deve permitir uma função para o usuário, sendo as seguintes opções: administrador, vendedor e caixa.
-  * RN.5.3 - O sistema deve permitir que todas as funções estejam disponíveis para um usuário que tenha função administrador. Entretanto, para usuários com função vendedor, deve-se permitir apenas a função de realizar vendas e, para função caixa, deve-se permitir o recebimento , alteração e exclusão de uma venda.
-  * RN.5.4 - O sistema deve permitir a exclusão lógica de um usuário, entretanto, ocorrerá a exclusão física caso o usuário não possua nenhum cadastro vinculado.
+## Laravel Sponsors
 
-* RF6.  Entrada de produtos - O sistema deve permitir incluir, alterar e excluir os produtos do estoque, com os seguintes atributos: número da nota fiscal, produto, quantidade e data da entrada.
-  * RN.6.1 - O sistema deve atualizar a quantidade de um produto ao fazer inclusão no estoque.
-  * RN.6.2 - O sistema deve permitir a exclusão lógica do estoque, entretanto, ocorrerá a exclusão física caso o estoque não possua nenhum cadastro vinculado.
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+
+### Premium Partners
+
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/)**
+- **[OP.GG](https://op.gg)**
+
+## Contributing
+
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+
+## Code of Conduct
+
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
