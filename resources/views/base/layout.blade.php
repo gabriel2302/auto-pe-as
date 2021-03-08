@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AutoPeças - Pedrin</title>
+    <title>Autopeças</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/template/images/favicon-32x32.png">
 
     <!-- ========== COMMON STYLES ========== -->
-    <link rel="stylesheet" href="/template/css/bootstrap.min.css" media="screen" >
-    <link rel="stylesheet" href="/template/css/font-awesome.min.css" media="screen" >
-    <link rel="stylesheet" href="/template/css/animate-css/animate.min.css" media="screen" >
-    <link rel="stylesheet" href="/template/css/lobipanel/lobipanel.min.css" media="screen" >
+    <link rel="stylesheet" href="/template/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="/template/css/font-awesome.min.css" media="screen">
+    <link rel="stylesheet" href="/template/css/animate-css/animate.min.css" media="screen">
+    <link rel="stylesheet" href="/template/css/lobipanel/lobipanel.min.css" media="screen">
 
     <!-- ========== PAGE STYLES ========== -->
-    <link rel="stylesheet" href="/template/css/prism/prism.css" media="screen" > <!-- USED FOR DEMO HELP - YOU CAN REMOVE IT -->
-    <link rel="stylesheet" href="/template/css/toastr/toastr.min.css" media="screen" >
-    <link rel="stylesheet" href="/template/css/icheck/skins/line/blue.css" >
-    <link rel="stylesheet" href="/template/css/icheck/skins/line/red.css" >
-    <link rel="stylesheet" href="/template/css/icheck/skins/line/green.css" >
-    <link rel="stylesheet" href="/template/css/bootstrap-tour/bootstrap-tour.css" >
-    <link rel="stylesheet" type="text/css" href="/template/js/DataTables/datatables.min.css"/>
-    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="/template/css/prism/prism.css" media="screen"> <!-- USED FOR DEMO HELP - YOU CAN REMOVE IT -->
+    <link rel="stylesheet" href="/template/css/toastr/toastr.min.css" media="screen">
+    <link rel="stylesheet" href="/template/css/icheck/skins/line/blue.css">
+    <link rel="stylesheet" href="/template/css/icheck/skins/line/red.css">
+    <link rel="stylesheet" href="/template/css/icheck/skins/line/green.css">
+    <link rel="stylesheet" href="/template/css/bootstrap-tour/bootstrap-tour.css">
+    <link rel="stylesheet" type="text/css" href="/template/js/DataTables/datatables.min.css" />
+
+
     <!-- ========== THEME CSS ========== -->
-    <link rel="stylesheet" href="/template/css/main.css" media="screen" >
+    <link rel="stylesheet" href="/template/css/main.css" media="screen">
 
     <!-- ========== MODERNIZR ========== -->
     <script src="/template/js/modernizr/modernizr.min.js"></script>
-    <style>
 
-.icoLojaCadastro{
-    color: #809aeb;
-    font-size: 2.5rem;
-    border: none;
-}
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <!-- Jquery Form -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.js" integrity="sha512-RTxmGPtGtFBja+6BCvELEfuUdzlPcgf5TZ7qOVRmDfI9fDdX2f1IwBq+ChiELfWt72WY34n0Ti1oo2Q3cWn+kw==" crossorigin="anonymous"></script>
 
-}
-</style>
+    <!--Jquery Mask (formatação de campos) -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
 </head>
+
 <body class="top-navbar-fixed">
     <div class="main-wrapper">
 
@@ -49,15 +49,15 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="navbar-header no-padding">
-                        <a class="navbar-brand" href="index.html">
-                            <img src="images/logo-dark.svg" alt="Pedrin AutoPeças" class="logo">
+                        <a class="navbar-brand" href="/">
+                            <img src="/template/images/logomarca.png" alt="AutoPeças" class="logo">
                         </a>
                         <span class="small-nav-handle hidden-sm hidden-xs"><i class="fa fa-outdent"></i></span>
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
                             <span class="sr-only">Toggle navigation</span>
                             <i class="fa fa-ellipsis-v"></i>
                         </button>
-                        <button type="button" class="navbar-toggle mobile-nav-toggle" >
+                        <button type="button" class="navbar-toggle mobile-nav-toggle">
                             <i class="fa fa-bars"></i>
                         </button>
                     </div>
@@ -67,32 +67,32 @@
                         <ul class="nav navbar-nav" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                             <li class="hidden-sm hidden-xs"><a href="#" class="user-info-handle"><i class="fa fa-user"></i></a></li>
                             <li class="hidden-sm hidden-xs"><a href="#" class="full-screen-handle"><i class="fa fa-arrows-alt"></i></a></li>
-                            
+
                         </ul>
                         <!-- /.nav navbar-nav -->
 
                         <ul class="nav navbar-nav navbar-right" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                             <li class="dropdown tour-two">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pedrin<span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrador<span class="caret"></span></a>
                                 <ul class="dropdown-menu profile-dropdown">
                                     <li class="profile-menu bg-gray">
                                         <div class="">
                                             <img src="http://placehold.it/60/c2c2c2?text=User" alt="John Doe" class="img-circle profile-img">
                                             <div class="profile-name">
-                                                <h6>Pedrin </h6>
+                                                <h6>Administrador</h6>
                                                 <a href="#">View Profile</a>
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
                                     </li>
-                                    <li><a href="#"><i class="fa fa-cog"></i> Configurações</a></li>
-                                    <li><a href="#"><i class="fa fa-sliders"></i> Account Details</a></li>
+                                    <li><a href="#"><i class="fa fa-cog"></i>Configurações</a></li>
+                                    <li><a href="#"><i class="fa fa-sliders"></i>Minha Conta</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#" class="color-danger text-center"><i class="fa fa-sign-out"></i> Logout</a></li>
                                 </ul>
                             </li>
                             <!-- /.dropdown -->
-                            </ul>
+                        </ul>
                         <!-- /.nav navbar-nav navbar-right -->
                     </div>
                     <!-- /.navbar-collapse -->
@@ -111,40 +111,23 @@
                     <div class="sidebar-content">
                         <div class="user-info closed">
                             <img src="http://placehold.it/90/c2c2c2?text=User" alt="John Doe" class="img-circle profile-img">
-                            <h6 class="title">Pedrin Delas</h6>
-                            <small class="info">PHP Developer</small>
+                            <h6 class="title">Administrador</h6>
                         </div>
                         <!-- /.user-info -->
 
                         <div class="sidebar-nav">
                             <ul class="side-nav color-gray">
-                                <li class="nav-header">
-                                    <span class="">Cadastros</span>
-                                </li>
                                 <li class="has-children">
-                                    <a href="#"><i class="fa fa-dashboard"></i> <span>Autopeças</span> <i class="fa fa-angle-right arrow"></i></a>
+                                    <a href="#"><i class="fa fa-users"></i> <span>Clientes</span> <i class="fa fa-angle-right arrow"></i></a>
                                     <ul class="child-nav">
-                                        <li class="active"><a href="#"><i class="fa fa-bolt"></i> <span>Produtos</span></a></li>
-                                        <li><a href="#"><i class="fa fa-bookmark"></i> <span>Clientes</span></a></li>
-                                        <li><a href="#"><i class="fa fa-dashboard"></i> <span>Funcionários</span></a></li>
+                                        <li><a href="/clientes/cadastrar-pf"><i class="fa fa-pencil"></i> <span>Cadastrar pessoa física</span></a></li>
+                                        <li><a href="/clientes/cadastrar-pj"><i class="fa fa-pencil"></i> <span>Cadastrar pessoa física</span></a></li>
+                                        <li><a href="/clientes"><i class="fa fa-list"></i> <span>Visualizar</span></a></li>
                                     </ul>
                                 </li>
 
-                                <li class="nav-header">
-                                    <span class="">Foda se</span>
-                                </li>
-                                <li class="has-children">
-                                    <a href="#"><i class="fa fa-file-text"></i> <span>A</span> <i class="fa fa-angle-right arrow"></i></a>
-                                    <ul class="child-nav">
-                                        <li><a href="#"><i class="fa fa-lock"></i> <span>B</span></a></li>
-                                        <li><a href="#"><i class="fa fa-thumb-tack"></i> <span>C</span></a></li>
-                                        <li><a href="#"><i class="fa fa-unlock"></i> <span>D</span></a></li>
-                                        <li><a href="#"><i class="fa fa-sign-in"></i> <span>E</span></a></li>
-                                    </ul>
-                                </li>                             
+                            </ul>
 
-                               </ul>
-                           
                         </div>
                         <!-- /.sidebar-nav -->
                     </div>
@@ -154,8 +137,8 @@
 
                 <div class="main-page">
                     <div class="container-fluid">
-                                @yield('conteudo')
-                        </div>
+                        @yield('conteudo')
+                    </div>
                 </div>
 
                 <div class="right-sidebar bg-white fixed-sidebar">
@@ -212,48 +195,14 @@
     <script src="/template/js/toastr/toastr.min.js"></script>
     <script src="/template/js/icheck/icheck.min.js"></script>
     <script src="/template/js/bootstrap-tour/bootstrap-tour.js"></script>
+    <script src="/template/js/DataTables/datatables.min.js"></script>
 
     <!-- ========== THEME JS ========== -->
     <script src="/template/js/main.js"></script>
     <script src="/template/js/production-chart.js"></script>
     <script src="/template/js/traffic-chart.js"></script>
     <script src="/template/js/task-list.js"></script>
-    <script src="/template/js/DataTables/datatables.min.js"></script>
-    <script>
-           $(document).ready(function() {
-            $('#example').DataTable();
-            } );
-        </script>
-    <script>
-        $(function(){
 
-            // Counter for dashboard stats
-            $('.counter').counterUp({
-                delay: 10,
-                time: 1000
-            });
-
-            // Welcome notification
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "3500",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
-            toastr["success"]("Foda se :)", "Bem Vindo ao admin do Pedrin!");
-
-        });
-    </script>
 </body>
+
 </html>
