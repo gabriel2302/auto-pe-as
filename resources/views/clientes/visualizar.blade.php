@@ -119,6 +119,24 @@
 
                 </div>
 
+                <h5 class="underline mt-30">Crédito</h5>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="credito_disponivel">Crédito disponível</label>
+                            <input type="text" class="form-control" id="credito_disponivel" name="credito_disponivel" value="R$ {{($cliente->credito)-($cliente->credito_utilizado)}}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="credito_utilizado">Crédito utilizado</label>
+                            <input type="text" class="form-control" id="credito_utilizado" name="credito_utilizado" value="R$ {{$cliente->credito_utilizado}}" readonly>
+                        </div>
+                    </div>
+
+                </div>
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="btn-group pull-right mt-10" role="group">
@@ -232,7 +250,23 @@
 
                 </div>
 
-                <small class="form-text text-muted">Os campos com são obrigatórios o preenchimento!</small>
+                <h5 class="underline mt-30">Crédito</h5>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="credito_disponivel">Crédito disponível</label>
+                            <input type="text" class="form-control" id="credito_disponivel" name="credito_disponivel" value="R$ {{($cliente->credito)-($cliente->credito_utilizado)}}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="credito_utilizado">Crédito utilizado</label>
+                            <input type="text" class="form-control" id="credito_utilizado" name="credito_utilizado" value="R$ {{$cliente->credito_utilizado}}" readonly>
+                        </div>
+                    </div>
+
+                </div>
 
                 <div class="row">
                     <div class="col-md-12">
