@@ -55,9 +55,10 @@
               <td>{{$usuario->telefone}}</td>
               <td>{{$usuario->whatsapp}}</td>
               <td>{{$usuario->funcao_id}}</td>
-              <td>
-                <a class="btn btn-primary" href="/usuarios/alterar?usuarios={{$usuario->id_usuario}}&alterar" title="Alterar"><i class="fa fa-pencil"></i></a>
-                <a class="btn bg-black" href="/usuarios/visualizar?usuarios={{$usuario->id_usuario}}&visualizar" title="Visualizar"><i class="fa fa-eye"></i></a>
+              <td style="display: flex; justify-content: space-between">
+                <a class="btn btn-primary" href="/usuarios/alterar?usuarios={{$usuario->id_usuario}}&alterar" title="Alterar"><i class="fa fa-pencil" style="margin: 0"></i></a>
+                <a class="btn bg-black" href="/usuarios/visualizar?usuarios={{$usuario->id_usuario}}&visualizar" title="Visualizar"><i class="fa fa-eye"  style="margin: 0"></i></a>
+                <a class="btn btn-danger" title="Excluir/Inativar"><i class="fa fa-trash"  style="margin: 0"></i></a>
                 @csrf
                 <meta name="csrf-token" content="{{ csrf_token() }}">
               </td>
