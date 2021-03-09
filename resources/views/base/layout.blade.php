@@ -130,7 +130,11 @@
 
                             <ul class="side-nav color-gray">
                                 <li class="has-children">
-                                    <a href="/produtos"><i class="fa fa-store"></i> <span>Produtos</span></i></a>                                    
+                                    <a href="#"><i class="fa fa-cart-plus" aria-hidden="true"></i><span>Produtos</span><i class="fa fa-angle-right arrow"></i></i></a> 
+                                    <ul class="child-nav">
+                                        <li><a href="/produtos/cadastrar"><i class="fa fa-pencil"></i> <span>Cadastrar </span></a></li>
+                                        <li><a href="/produtos"><i class="fa fa-list"></i> <span>Visualizar</span></a></li>
+                                    </ul>                                   
                                 </li>
 
                             </ul>

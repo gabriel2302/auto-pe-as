@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\clientesController;
+use App\Http\Controllers\produtosController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -48,5 +49,14 @@ Route::post('/clientes/ativar', [clientesController::class, 'ativar'])->name('cl
 
 //Rotas Produtos
 
+Route::get('/produtos', [produtosController::class, 'buscar'])->name('produtos');
 
+Route::get('/produtos/cadastrar', function () {
+    $categorias = DB::table('categoria')->get();
+    $marcas = DB::table('marca')->get();
+    return view('produtos/cadastrar', compact('categorias','marcas'));
+});
 
+Route::get('/produtos/alterar', [produtosController::class, 'visualizar'])->name('produtos-alterar-visualizar');
+
+Route::get('/produtos/visualizar', [produtosController::class, 'visualizar'])->name('produtos-visualizar');
