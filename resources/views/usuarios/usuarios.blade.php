@@ -5,7 +5,7 @@
   <div class="col-md-6">
     <ul class="breadcrumb">
       <li><a href="/"><i class="fa fa-home"></i> Início</a></li>
-      <li class="active">Clientes</li>
+      <li class="active">Usuários</li>
     </ul>
   </div>
 </div>
@@ -20,8 +20,7 @@
         <br>
         <div class="row">
           <div class="col-md-12 form-group">
-            <a class="btn btn-primary" href="/clientes/cadastrar-pf">Cadastrar pessoa física</a>
-            <a class="btn btn-primary" href="/clientes/cadastrar-pj">Cadastrar pessoa jurídica</a>
+            <a class="btn btn-primary" href="/usuarios/cadastrar">Cadastrar usuário</a>
           </div>
         </div>
       </div>
@@ -30,42 +29,37 @@
         <table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%">
           <thead>
             <tr>
-              <th>Nome/Razão social</th>
-              <th>CPF/CNPJ</th>
+              <th>Nome</th>
+              <th>CPF</th>
               <th>Telefone</th>
               <th>WhatsApp</th>
-              <th>Situação</th>
+              <th>Funcão</th>
               <th width="130px">Opções</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
-              <th>Nome/Razão social</th>
-              <th>CPF/CNPJ</th>
+              <th>Nome</th>
+              <th>CPF</th>
               <th>Telefone</th>
               <th>WhatsApp</th>
-              <th>Situação</th>
+              <th>Funcão</th>
               <th width="130px">Opções</th>
             </tr>
           </tfoot>
           <tbody>
-            @foreach($clientes as $cliente)
+            @foreach($usuarios as $usuario)
             <tr>
-              <td>{{$cliente->razao_social}}</td>
-              <td>{{$cliente->cpf_cnpj}}</td>
-              <td>{{$cliente->telefone}}</td>
-              <td>{{$cliente->whatsapp}}</td>
-              <td>{{$cliente->status=='1'?'Ativo':'Inativo'}}</td>
+              <td>{{$usuario->nome}}</td>
+              <td>{{$usuario->cpf}}</td>
+              <td>{{$usuario->telefone}}</td>
+              <td>{{$usuario->whatsapp}}</td>
+              <td>{{$usuario->funcao_id}}</td>
               <td>
-                <a class="btn btn-primary" href="/clientes/alterar?cliente={{$cliente->id_cliente}}&alterar" title="Alterar"><i class="fa fa-pencil"></i></a>
-                <a class="btn bg-black" href="/clientes/visualizar?cliente={{$cliente->id_cliente}}&visualizar" title="Visualizar"><i class="fa fa-eye"></i></a>
+                <a class="btn btn-primary" href="/usuarios/alterar?usuarios={{$usuario->id_usuario}}&alterar" title="Alterar"><i class="fa fa-pencil"></i></a>
+                <a class="btn bg-black" href="/usuarios/visualizar?usuarios={{$usuario->id_usuario}}&visualizar" title="Visualizar"><i class="fa fa-eye"></i></a>
                 @csrf
                 <meta name="csrf-token" content="{{ csrf_token() }}">
-                @if($cliente->status=='1')
-                <a class="btn btn-danger text-center" onclick="modal_excluir('{{$cliente->razao_social}}', '{{$cliente->id_cliente}}')" title="Excluir/Inativar"><i class="fa fa-trash"></i></a>
-                @else
-                <a class="btn btn-success" onclick="modal_ativar('{{$cliente->razao_social}}', '{{$cliente->id_cliente}}')" title="Ativar"><i class="fa fa-check"></i></a>
-                @endif
               </td>
             </tr>
             @endforeach

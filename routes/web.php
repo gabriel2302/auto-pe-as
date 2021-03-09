@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\clientesController;
 use App\Http\Controllers\produtosController;
+use App\Http\Controllers\usuariosController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -60,3 +61,23 @@ Route::get('/produtos/cadastrar', function () {
 Route::get('/produtos/alterar', [produtosController::class, 'visualizar'])->name('produtos-alterar-visualizar');
 
 Route::get('/produtos/visualizar', [produtosController::class, 'visualizar'])->name('produtos-visualizar');
+
+// Rotas Usuários
+
+Route::get('/usuarios', [usuariosController::class, 'buscar'])->name('usuarios');
+
+Route::get('/usuarios/cadastrar', function () {
+    $funcoes = DB::table('funcao')->get();
+    return view('usuarios/cadastrar', compact('funcoes'));
+});
+
+Route::get('/usuarios/alterar', [usuariosController::class, 'visualizar'])->name('usuarios-alterar-visualizar');
+
+Route::post('/usuarios/alterar', [usuariosController::class, 'alterar'])->name('usuarios-alterar');
+
+
+Route::get('/usuarios/visualizar', [usuariosController::class, 'visualizar'])->name('usuarios-visualizar');
+
+Route::post('/usuarios/verificar-usuario', [usuariosController::class, 'verificarusuarios'])->name('verificar-usuario');
+
+Route::post('/usuarios/cadastrar', [usuariosController::class, 'cadastrar'])->name('usuarios-cadastrar');
