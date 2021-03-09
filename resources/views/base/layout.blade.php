@@ -128,6 +128,20 @@
 
                             </ul>
 
+                            <ul class="side-nav color-gray">
+                                <li class="has-children">
+                                    <a href="/produtos"><i class="fa fa-store"></i> <span>Produtos</span></i></a>                                    
+                                </li>
+
+                            </ul>
+
+                            <ul class="side-nav color-gray">
+                                <li class="has-children">
+                                    <a href="#"><i class="fa fa-user"></i> <span>Usuários</span></i></a>                                    
+                                </li>
+
+                            </ul>
+
                         </div>
                         <!-- /.sidebar-nav -->
                     </div>

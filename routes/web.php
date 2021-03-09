@@ -45,3 +45,8 @@ Route::get('/clientes/visualizar', [clientesController::class, 'visualizar'])->n
 Route::post('/clientes/excluir', [clientesController::class, 'excluir'])->name('clientes-excluir');
 
 Route::post('/clientes/ativar', [clientesController::class, 'ativar'])->name('clientes-ativar');
+
+//Rotas Produtos
+
+
+
