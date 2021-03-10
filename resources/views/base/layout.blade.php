@@ -141,11 +141,22 @@
 
                             <ul class="side-nav color-gray">
                                 <li class="has-children">
-                                    <a href="#"><i class="fa fa-user"></i> <span>Usuários</span><i class="fa fa-angle-right arrow"></i></a>
+                                    <a href="#"><i class="fa fa-user"></i> <span>Usuários</span><i class="fa fa-angle-right arrow"></i></a>   
                                     <ul class="child-nav">
-                                        <li><a href="/usuarios/cadastrar"><i class="fa fa-pencil"></i> <span>Cadastrar</span></a></li>
+                                        <li><a href="/usuarios/cadastrar"><i class="fa fa-pencil"></i> <span>Cadastrar </span></a></li>
                                         <li><a href="/usuarios"><i class="fa fa-list"></i> <span>Visualizar</span></a></li>
-                                    </ul>
+                                    </ul>                                     
+                                </li>
+
+                            </ul>
+
+                            <ul class="side-nav color-gray">
+                                <li class="has-children">
+                                    <a href="#"><i class="fa fa-folder" aria-hidden="true"></i><span>Parâmetros</span><i class="fa fa-angle-right arrow"></i></a>   
+                                    <ul class="child-nav">
+                                        <li><a href="/categorias"><i class="fa fa-list"></i> <span>Categorias </span></a></li>
+                                        <li><a href="/marcas"><i class="fa fa-list"></i> <span>Marcas </span></a></li>
+                                    </ul>                                     
                                 </li>
 
                             </ul>
