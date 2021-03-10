@@ -3,6 +3,7 @@
 use App\Http\Controllers\clientesController;
 use App\Http\Controllers\produtosController;
 use App\Http\Controllers\usuariosController;
+use App\Http\Controllers\parametrosController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -81,3 +82,31 @@ Route::get('/usuarios/visualizar', [usuariosController::class, 'visualizar'])->n
 Route::post('/usuarios/verificar-usuario', [usuariosController::class, 'verificarusuarios'])->name('verificar-usuario');
 
 Route::post('/usuarios/cadastrar', [usuariosController::class, 'cadastrar'])->name('usuarios-cadastrar');
+
+//Rotas Categorias
+
+Route::get('/categorias', [parametrosController::class, 'buscar'])->name('categorias');
+
+Route::get('/categorias/cadastrar', function () {
+    return view('categorias/cadastrar');
+});
+Route::post('/categorias/cadastrar', [parametrosController::class, 'cadastrarCategoria'])->name('categorias-cadastrar');
+
+Route::get('/categorias/alterar', [parametrosController::class, 'visualizar'])->name('categoria-alterar-visualizar');
+Route::post('/categorias/alterar', [parametrosController::class, 'alterarCategoria'])->name('categoria-alterar');
+
+Route::get('/categorias/visualizar', [parametrosController::class, 'visualizar'])->name('categoria-visualizar');
+
+//Rotas Marcas
+
+Route::get('/marcas', [parametrosController::class, 'buscarMarca'])->name('marcas');
+
+Route::get('/marcas/cadastrar', function () {
+    return view('marcas/cadastrar');
+});
+
+Route::post('/marcas/cadastrar', [parametrosController::class, 'cadastrarMarca'])->name('marcas-cadastrar');
+
+Route::get('/marcas/alterar', [parametrosController::class, 'visualizarMarca'])->name('marcas-alterar-visualizar');
+
+Route::get('/marcas/visualizar', [parametrosController::class, 'visualizarMarca'])->name('marcas-visualizar');
