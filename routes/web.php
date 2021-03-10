@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $numero_clientes = DB::table('clientes')->where('status', '=', '1')->count();
-    return view('inicio/inicio', compact('numero_clientes'));
+    $numero_produtos = DB::table('produtos')->count();
+    return view('inicio/inicio', compact('numero_clientes', 'numero_produtos'));
 });
 
 //Rotas clientes

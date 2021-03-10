@@ -130,22 +130,26 @@
 
                             <ul class="side-nav color-gray">
                                 <li class="has-children">
-                                    <a href="#"><i class="fa fa-cart-plus" aria-hidden="true"></i><span>Produtos</span><i class="fa fa-angle-right arrow"></i></i></a> 
+                                    <a href="#"><i class="fa fa-cart-plus" aria-hidden="true"></i><span>Produtos</span><i class="fa fa-angle-right arrow"></i></a>
                                     <ul class="child-nav">
                                         <li><a href="/produtos/cadastrar"><i class="fa fa-pencil"></i> <span>Cadastrar </span></a></li>
                                         <li><a href="/produtos"><i class="fa fa-list"></i> <span>Visualizar</span></a></li>
-                                    </ul>                                   
+                                    </ul>
                                 </li>
 
                             </ul>
 
                             <ul class="side-nav color-gray">
                                 <li class="has-children">
-                                    <a href="#"><i class="fa fa-user"></i> <span>Usuários</span></i></a>                                    
+                                    <a href="#"><i class="fa fa-user"></i> <span>Usuários</span><i class="fa fa-angle-right arrow"></i></a>
+                                    <ul class="child-nav">
+                                        <li><a href="/usuarios/cadastrar"><i class="fa fa-pencil"></i> <span>Cadastrar</span></a></li>
+                                        <li><a href="/usuarios"><i class="fa fa-list"></i> <span>Visualizar</span></a></li>
+                                    </ul>
                                 </li>
 
                             </ul>
-                            
+
 
                         </div>
                         <!-- /.sidebar-nav -->
