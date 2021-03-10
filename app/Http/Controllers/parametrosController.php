@@ -79,11 +79,20 @@ class parametrosController extends Controller
     public function alterarCategoria()
     {
         $categorias = new parametrosModel();
-        $categorias->setNomecategoria($_POST['nome']);  
+        $categorias->setNomecategoria($_POST['nomeCategoria']);  
         $categorias->setId_categoria($_POST['id_categoria']);              
         $categorias->alterarCategoria();
         $resposta = array('resposta' => $categorias->getResposta());
         return Response()->json($resposta);
     }
 
+    public function alterarMarca()
+    {
+        $marcas = new parametrosModel();
+        $marcas->setNomemarca($_POST['nomeMarca']);  
+        $marcas->setId_marca($_POST['id_marca']);              
+        $marcas->alterarMarca();
+        $resposta = array('resposta' => $marcas->getResposta());
+        return Response()->json($resposta);
+    }
 }
