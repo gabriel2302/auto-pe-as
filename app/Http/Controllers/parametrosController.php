@@ -86,4 +86,18 @@ class parametrosController extends Controller
         return Response()->json($resposta);
     }
 
+    function buscarParametrosDeVenda() {
+        $parametros = DB::table('pdv')->get();
+        return view('parametros-de-venda/visualizar', compact('parametros'));
+    }
+
+    function alterarParametrosDeVenda() {
+        $parametro = new parametrosModel();
+        $parametro->setValor($_POST['valor']);  
+        $parametro->setId($_POST['id']);  
+        
+        $parametro->alterarParametro();
+        $resposta = array('resposta' => $parametro->getResposta());
+        return Response()->json($resposta);
+    }
 }

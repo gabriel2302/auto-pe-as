@@ -14,6 +14,8 @@ class parametrosModel extends Model
     private $resposta;
     private $nomeCategoria;
     private $id_categoria;
+    private $id;
+    private $valor;
 
 
     public function getId_categoria()
@@ -60,6 +62,30 @@ class parametrosModel extends Model
     public function setResposta($resposta)
     {
         $this->resposta = $resposta;
+
+        return $this;
+    }
+ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function getValor()
+    {
+        return $this->valor;
+    }
+
+    public function setValor($valor)
+    {
+        $this->valor = $valor;
 
         return $this;
     }
@@ -114,4 +140,19 @@ class parametrosModel extends Model
             $this->setResposta('vazio');
         }              
     }
+
+    
+    public function alterarParametro()
+    {                       
+        if (!empty($this->getValor())) {
+            DB::table('pdv')->where('id', '=', $this->getId())->update([
+                'valor' => $this->getValor(),
+            ]);
+            $this->setResposta('alterado');
+        } else {
+            $this->setResposta('vazio');
+        }              
+    }
+
+
 }

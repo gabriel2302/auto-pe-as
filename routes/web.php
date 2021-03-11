@@ -111,3 +111,9 @@ Route::post('/marcas/cadastrar', [parametrosController::class, 'cadastrarMarca']
 Route::get('/marcas/alterar', [parametrosController::class, 'visualizarMarca'])->name('marcas-alterar-visualizar');
 
 Route::get('/marcas/visualizar', [parametrosController::class, 'visualizarMarca'])->name('marcas-visualizar');
+
+
+// Parâmetros de venda
+
+Route::get('/parametros-de-venda', [parametrosController::class, 'buscarParametrosDeVenda'])->name('parametros-de-venda');
+Route::post('/parametros-de-venda', [parametrosController::class, 'alterarParametrosDeVenda']);

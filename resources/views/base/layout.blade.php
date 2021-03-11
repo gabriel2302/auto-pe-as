@@ -156,6 +156,7 @@
                                     <ul class="child-nav">
                                         <li><a href="/categorias"><i class="fa fa-list"></i> <span>Categorias </span></a></li>
                                         <li><a href="/marcas"><i class="fa fa-list"></i> <span>Marcas </span></a></li>
+                                        <li><a href="/parametros-de-venda"><i class="fa fa-list"></i> <span>Parâmetros de venda </span></a></li>
                                     </ul>                                     
                                 </li>
 
