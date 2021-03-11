@@ -30,12 +30,14 @@
           <thead>
             <tr>
               <th>Marca</th>
+              <th>Situação</th>
               <th width="130px">Opções</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
               <th>Marca</th>
+              <th>Situação</th>
               <th width="130px">Opções</th>
             </tr>
           </tfoot>
@@ -43,12 +45,17 @@
           @foreach($marcas as $marca)
             <tr>
               <td>{{$marca->descricao}}</td>
+              <td>{{$marca->status=='1'?'Ativo':'Inativo'}}</td>
               <td>
                 <a class="btn btn-primary" href="/marcas/alterar?marca={{$marca->id_marca}}&alterar" title="Alterar"><i class="fa fa-pencil"></i></a>
                 <a class="btn bg-black" href="/marcas/visualizar?marca={{$marca->id_marca}}&visualizar" title="Visualizar"><i class="fa fa-eye"></i></a>
                 @csrf
                 <meta name="csrf-token" content="{{ csrf_token() }}">             
-               
+                @if($marca->status=='1')
+                <a class="btn btn-danger text-center" onclick="modal_excluir('{{$marca->descricao}}', '{{$marca->id_marca}}')" title="Excluir/Inativar"><i class="fa fa-trash"></i></a>
+                @else
+                <a class="btn btn-success" onclick="modal_ativar('{{$marca->descricao}}', '{{$marca->id_marca}}')" title="Ativar"><i class="fa fa-check"></i></a>
+                @endif
               </td>
             </tr>
             @endforeach
@@ -85,7 +92,7 @@
             $('#example').DataTable();
           });
 
-          function modal_ativar(cliente, id_cliente) {
+          function modal_ativar(marca, id_marca) {
             var modal_ativar = '\
             <div class="modal fade" id="modal_ativar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">\
                 <div class="modal-dialog" role="document">\
@@ -94,12 +101,12 @@
                             <h4 class="modal-title" id="myModalLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>\
                         </div>\
                         <div class="modal-body">\
-                            Você tem certeza que deseja ativar o cliente ' + cliente + '\
+                            Você tem certeza que deseja ativar a marca ' + marca + '\
                         </div>\
                         <div class="modal-footer">\
                             <div class="btn-group" role="group">\
                                 <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>\
-                                <button type="button" class="btn bg-success btn-wide btn-rounded" onclick="ativar(\'' + id_cliente + '\')"><i class="fa fa-check"></i>Ativar</button>\
+                                <button type="button" class="btn bg-success btn-wide btn-rounded" onclick="ativar(\'' + id_marca + '\')"><i class="fa fa-check"></i>Ativar</button>\
                             </div>\
                             <!-- /.btn-group -->\
                         </div>\
@@ -115,7 +122,7 @@
             });
           }
 
-          function ativar(id_cliente) {
+          function ativar(id_marca) {
             var modal_texto = document.getElementById('modal-resposta-texto');
 
             $.ajaxSetup({
@@ -125,20 +132,20 @@
             });
 
             $.ajax({
-              url: "/clientes/ativar",
+              url: "/marcas/ativar",
               method: 'post',
               data: {
-                'id_cliente': id_cliente,
+                'id_marca': id_marca,
               },
               success: function(response) {
 
                 if (response.resposta == 'ativado') {
                   modal_texto.innerHTML = '';
-                  modal_texto.innerHTML = 'Cliente ativado com sucesso!';
+                  modal_texto.innerHTML = 'Marca ativada com sucesso!';
                   $('#modal-resposta').modal({
                     show: true
                   });
-                  window.location.href = "/clientes";
+                  window.location.href = "/marcas";
                 }
               },
               error: function(response) {
@@ -152,7 +159,7 @@
 
           }
 
-          function modal_excluir(cliente, id_cliente) {
+          function modal_excluir(marca, id_marca) {
             var modal_excluir = '\
             <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">\
                 <div class="modal-dialog" role="document">\
@@ -161,12 +168,12 @@
                             <h4 class="modal-title" id="myModalLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>\
                         </div>\
                         <div class="modal-body">\
-                            Você tem certeza que deseja excluir o cliente ' + cliente + '\
+                            Você tem certeza que deseja excluir a marca ' + marca + '\
                         </div>\
                         <div class="modal-footer">\
                             <div class="btn-group" role="group">\
                                 <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>\
-                                <button type="button" class="btn bg-danger btn-wide btn-rounded" onclick="excluir(\'' + id_cliente + '\')"><i class="fa fa-trash"></i>Excluir</button>\
+                                <button type="button" class="btn bg-danger btn-wide btn-rounded" onclick="excluir(\'' + id_marca + '\')"><i class="fa fa-trash"></i>Excluir</button>\
                             </div>\
                             <!-- /.btn-group -->\
                         </div>\
@@ -182,7 +189,7 @@
             });
           }
 
-          function excluir(id_cliente) {
+          function excluir(id_marca) {
 
             var modal_texto = document.getElementById('modal-resposta-texto');
 
@@ -193,20 +200,20 @@
             });
 
             $.ajax({
-              url: "/clientes/excluir",
+              url: "/marcas/excluir",
               method: 'post',
               data: {
-                'id_cliente': id_cliente,
+                'id_marca': id_marca,
               },
               success: function(response) {
 
                 if (response.resposta == 'excluido') {
                   modal_texto.innerHTML = '';
-                  modal_texto.innerHTML = 'Cliente excluído com sucesso!';
+                  modal_texto.innerHTML = 'Marca excluída com sucesso!';
                   $('#modal-resposta').modal({
                     show: true
                   });
-                  window.location.href = "/clientes";
+                  window.location.href = "/marcas";
                 }
               },
               error: function(response) {

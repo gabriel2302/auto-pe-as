@@ -20,8 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $numero_clientes = DB::table('clientes')->where('status', '=', '1')->count();
-    $numero_produtos = DB::table('produtos')->count();
-    return view('inicio/inicio', compact('numero_clientes', 'numero_produtos'));
+    $numero_produtos = DB::table('produtos')->where('status', '=', '1')->count();
+    $numero_categorias = DB::table('categoria')->where('status', '=', '1')->count();
+    $numero_marcas = DB::table('marca')->where('status', '=', '1')->count();
+    return view('inicio/inicio', compact('numero_clientes', 'numero_produtos', 'numero_categorias', 'numero_marcas'));
 });
 
 //Rotas clientes
@@ -57,12 +59,20 @@ Route::get('/produtos', [produtosController::class, 'buscar'])->name('produtos')
 Route::get('/produtos/cadastrar', function () {
     $categorias = DB::table('categoria')->get();
     $marcas = DB::table('marca')->get();
-    return view('produtos/cadastrar', compact('categorias','marcas'));
+    return view('produtos/cadastrar', compact('categorias', 'marcas'));
 });
+
+Route::post('/produtos/cadastrar', [produtosController::class, 'cadastrar'])->name('produtos-cadastrar');
 
 Route::get('/produtos/alterar', [produtosController::class, 'visualizar'])->name('produtos-alterar-visualizar');
 
+Route::post('/produtos/alterar', [produtosController::class, 'alterar'])->name('produtos-alterar');
+
 Route::get('/produtos/visualizar', [produtosController::class, 'visualizar'])->name('produtos-visualizar');
+
+Route::post('/produtos/excluir', [produtosController::class, 'excluir'])->name('produtos-excluir');
+
+Route::post('/produtos/ativar', [produtosController::class, 'ativar'])->name('produtos-ativar');
 
 // Rotas Usuários
 
@@ -98,6 +108,10 @@ Route::post('/categorias/alterar', [parametrosController::class, 'alterarCategor
 
 Route::get('/categorias/visualizar', [parametrosController::class, 'visualizar'])->name('categoria-visualizar');
 
+Route::post('/categrias/excluir', [parametrosController::class, 'excluirCategoria'])->name('categria-excluir');
+
+Route::post('/categrias/ativar', [parametrosController::class, 'ativarCategoria'])->name('categria-ativar');
+
 //Rotas Marcas
 
 Route::get('/marcas', [parametrosController::class, 'buscarMarca'])->name('marcas');
@@ -113,6 +127,9 @@ Route::post('/marcas/alterar', [parametrosController::class, 'alterarMarca'])->n
 
 Route::get('/marcas/visualizar', [parametrosController::class, 'visualizarMarca'])->name('marcas-visualizar');
 
+Route::post('/marcas/excluir', [parametrosController::class, 'excluirMarca'])->name('marcas-excluir');
+
+Route::post('/marcas/ativar', [parametrosController::class, 'ativarMarca'])->name('marcas-ativar');
 
 // Parâmetros de venda
 

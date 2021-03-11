@@ -37,7 +37,9 @@ class parametrosController extends Controller
         } else {
             return redirect()->route('categorias');
         }
-    }  
+    }
+
+    //Marcas
 
     public function visualizarMarca()
     {
@@ -61,28 +63,73 @@ class parametrosController extends Controller
     public function cadastrarMarca()
     {
         $marcas = new parametrosModel();
-        $marcas->setNome($_POST['nomeMarca']);
+        $marcas->setDescricao($_POST['nomeMarca']);
         $marcas->cadastrarMarca();
         $resposta = array('resposta' => $marcas->getResposta());
         return Response()->json($resposta);
     }
 
+    public function ativarMarca(){
+        $marca = new parametrosModel();
+        $marca->setId_marca($_POST['id_marca']);
+        $marca->ativarMarca();
+        $resposta = array('resposta' => $marca->getResposta());
+        return Response()->json($resposta);
+    }
+
+    public function excluirMarca(){
+        $marca = new parametrosModel();
+        $marca->setId_marca($_POST['id_marca']);
+        $marca->excluirMarca();
+        $resposta = array('resposta' => $marca->getResposta());
+        return Response()->json($resposta);
+    }
+
+    public function alterarMarca()
+    {
+        $marca = new parametrosModel();
+        $marca->setId_marca($_POST['id_marca']);
+        $marca->setDescricao($_POST['descricao']);
+        $marca->alterarMarca();
+        $resposta = array('resposta' => $marca->getResposta());
+        return Response()->json($resposta);
+    }
+
+    //Categorias
+
     public function cadastrarCategoria()
     {
         $categorias = new parametrosModel();
-        $categorias->setNomecategoria($_POST['nomeCategoria']);
+        $categorias->setDescricao($_POST['nomeCategoria']);
         $categorias->cadastrarCategoria();
         $resposta = array('resposta' => $categorias->getResposta());
         return Response()->json($resposta);
     }
 
+    
+    public function ativarCategoria(){
+        $categoria = new parametrosModel();
+        $categoria->setId_categoria($_POST['id_categoria']);
+        $categoria->ativarCategoria();
+        $resposta = array('resposta' => $categoria->getResposta());
+        return Response()->json($resposta);
+    }
+
+    public function excluirCategoria(){
+        $categoria = new parametrosModel();
+        $categoria->setId_categoria($_POST['id_categoria']);
+        $categoria->excluirCategoria();
+        $resposta = array('resposta' => $categoria->getResposta());
+        return Response()->json($resposta);
+    }
+
     public function alterarCategoria()
     {
-        $categorias = new parametrosModel();
-        $categorias->setNomecategoria($_POST['nomeCategoria']);  
-        $categorias->setId_categoria($_POST['id_categoria']);              
-        $categorias->alterarCategoria();
-        $resposta = array('resposta' => $categorias->getResposta());
+        $categoria = new parametrosModel();
+        $categoria->setId_categoria($_POST['id_categoria']);
+        $categoria->setDescricao($_POST['descricao']);
+        $categoria->alterarCategoria();
+        $resposta = array('resposta' => $categoria->getResposta());
         return Response()->json($resposta);
     }
 
@@ -91,11 +138,12 @@ class parametrosController extends Controller
         return view('parametros-de-venda/visualizar', compact('parametros'));
     }
 
+    //Parametros de venda
+
     function alterarParametrosDeVenda() {
         $parametro = new parametrosModel();
-        $parametro->setValor($_POST['valor']);  
-        $parametro->setId($_POST['id']);  
-        
+        $parametro->setId_parametro($_POST['id']);  
+        $parametro->setValor($_POST['valor']);
         $parametro->alterarParametro();
         $resposta = array('resposta' => $parametro->getResposta());
         return Response()->json($resposta);

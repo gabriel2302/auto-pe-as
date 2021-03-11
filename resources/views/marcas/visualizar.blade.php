@@ -26,20 +26,15 @@
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <input type="hidden" id="url_form" name="url_form" value="{{route('clientes-cadastrar')}}">                  
                     <div id="campos-cadastro" >
-                        <h5 class="underline mt-n">Informações pessoais</h5>
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="nome">Nome <b>*</b></label>
+                                    <label for="nome">Nome</label>
                                     <input type="text" class="form-control" value="{{$marca->descricao}}" id="nome" name="nome" readonly>
                                     <input type="hidden" value="{{$marca->id_marca}}" name="id_categoria">
                                 </div>
                             </div>
                         </div>    
-
-                        <small class="form-text text-muted">Os campos com <b>*</b> são obrigatórios o preenchimento!</small>
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
@@ -55,25 +50,4 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="modal-resposta" tabindex="-1" role="dialog" aria-labelledby="modaRespostaLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="modalRespostaLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>
-            </div>
-            <div class="modal-body">
-                <p id="modal-resposta-texto"></p>
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
-                </div>
-                <!-- /.btn-group -->
-            </div>
-        </div>
-    </div>
-</div>
-
-
 @stop

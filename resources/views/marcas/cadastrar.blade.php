@@ -5,8 +5,8 @@
     <div class="col-md-6">
         <ul class="breadcrumb">
             <li><a href="/"><i class="fa fa-home"></i> Início</a></li>
-            <li><a href="/clientes">marcas</a></li>
-            <li class="active">Cadastrar marcas </li>
+            <li><a href="/marcas">Marcas</a></li>
+            <li class="active">Cadastrar marca</li>
         </ul>
     </div>
 </div>
@@ -16,7 +16,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
-                    <h5>Cadastrar marcas</h5>
+                    <h5>Cadastrar marca</h5>
                 </div>
             </div>
             <div class="panel-body">
@@ -26,8 +26,6 @@
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <input type="hidden" id="url_form" name="url_form" value="{{route('marcas-cadastrar')}}">                  
                     <div id="campos-cadastro" >
-                        <h5 class="underline mt-n">Informações pessoais</h5>
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -36,8 +34,6 @@
                                 </div>
                             </div>
                         </div>                        
-
-
                         <small class="form-text text-muted">Os campos com <b>*</b> são obrigatórios o preenchimento!</small>
 
                         <div class="row">
@@ -98,7 +94,7 @@
 
                     if (response.resposta == 'cadastrado') {
                         modal_texto.innerHTML = '';
-                        modal_texto.innerHTML = 'Marca cadastrado com sucesso!';
+                        modal_texto.innerHTML = 'Marca cadastrada com sucesso!';
                         $('#modal-resposta').modal({
                             show: true
                         });
@@ -108,7 +104,7 @@
                     } else {
                         if (response.resposta == 'marca_cadastrado') {
                             modal_texto.innerHTML = '';
-                            modal_texto.innerHTML = 'Desculpe, mas essa marca já está cadastrado!';
+                            modal_texto.innerHTML = 'Desculpe, mas essa marca já está cadastrada!';
                             $('#modal-resposta').modal({
                                 show: true
                             });

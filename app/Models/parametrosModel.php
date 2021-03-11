@@ -16,6 +16,9 @@ class parametrosModel extends Model
     private $id_categoria;
     private $id;
     private $valor;
+    private $id_marca;
+    private $descricao;
+    private $id_parametro;
 
 
     public function getId_categoria()
@@ -89,7 +92,7 @@ class parametrosModel extends Model
 
         return $this;
     }
- 
+
     public function getId()
     {
         return $this->id;
@@ -114,67 +117,158 @@ class parametrosModel extends Model
         return $this;
     }
 
-    public function cadastrarMarca()
-    {                    
-        if (!empty($this->getNome() ) ) {
-            $verifica_marcas = DB::table('marca')->where('descricao', '=', $_POST['nomeMarca'])->select('id_marca')->count();
-            if ($verifica_marcas <= 0) {
-                DB::table('marca')->insert([
-                    'descricao' => $this->getNome(),
-                ]);
-                $this->setResposta('cadastrado');
-            } else {
-                $this->setResposta('marca_cadastrado');
-            }
-        } else {
-            $this->setResposta('vazio');
-        }                           
+    public function getDescricao()
+    {
+        return $this->descricao;
     }
 
-    public function cadastrarCategoria()
-    {                    
-        if (!empty($this->getNomecategoria() ) ) {
-            $verifica_categoria = DB::table('categoria')->where('descricao', '=', $_POST['nomeCategoria'])->select('id_categoria')->count();
-            if ($verifica_categoria <= 0) {
-                DB::table('categoria')->insert([
-                    'descricao' => $this->getNomecategoria(),
-                ]);
-                $this->setResposta('cadastrado');
+    public function setDescricao($descricao)
+    {
+        $this->descricao = $descricao;
+
+        return $this;
+    }
+
+    public function getId_parametro()
+    {
+        return $this->id_parametro;
+    }
+
+    public function setId_parametro($id_parametro)
+    {
+        $this->id_parametro = $id_parametro;
+
+        return $this;
+    }
+
+    //Marcas
+
+    public function ativarMarca()
+    {
+        if (!empty($this->getId_marca())) {
+            DB::table('marca')->where('id_marca', '=', $this->getId_marca())->update([
+                'status' => '1'
+            ]);
+            $this->setResposta('ativado');
+        }
+    }
+
+    public function excluirMarca()
+    {
+        if (!empty($this->getId_marca())) {
+            DB::table('marca')->where('id_marca', '=', $this->getId_marca())->delete();
+            $this->setResposta('excluido');
+        }
+    }
+
+    public function alterarMarca()
+    {
+        if (!empty($this->getId_marca())) {
+            if (!empty($this->getDescricao())) {
+                $verifica_marca = DB::table('marca')->select('id_marca')->where('descricao', '=', $this->getDescricao());
+                if ($verifica_marca->get()->contains('id_marca', $this->getId_marca()) || $verifica_marca->count() == 0) {
+                    DB::table('marca')->where('id_marca', '=', $this->getId_marca())->update([
+                        'descricao' => $this->getDescricao(),
+                    ]);
+                    $this->setResposta('alterado');
+                } else {
+                    $this->setResposta('marca_cadastrada');
+                }
             } else {
-                $this->setResposta('categoria_cadastrado');
+                $this->setResposta('vazio');
             }
         } else {
             $this->setResposta('vazio');
-        }                           
+        }
+    }
+
+    public function cadastrarMarca()
+    {
+        if (!empty($this->getDescricao())) {
+            $verifica_marca = DB::table('marca')->select('id_marca')->where('descricao', '=', $this->getDescricao());
+            if ($verifica_marca->get()->contains('id_marca', $this->getId_marca()) || $verifica_marca->count() == 0) {
+                DB::table('marca')->insert([
+                    'descricao' => $this->getDescricao(),
+                    'status' => '1'
+                ]);
+                $this->setResposta('cadastrado');
+            } else {
+                $this->setResposta('marca_cadastrada');
+            }
+        } else {
+            $this->setResposta('vazio');
+        }
+    }
+
+
+    //Categorias
+
+    public function ativarCategoria()
+    {
+        if (!empty($this->getId_categoria())) {
+            DB::table('categoria')->where('id_categoria', '=', $this->getId_categoria())->update([
+                'status' => '1'
+            ]);
+            $this->setResposta('ativado');
+        }
+    }
+
+    public function excluirCategoria()
+    {
+        if (!empty($this->getId_categoria())) {
+            DB::table('categoria')->where('id_categoria', '=', $this->getId_categoria())->delete();
+            $this->setResposta('excluido');
+        }
     }
 
     public function alterarCategoria()
-    {                       
-        if (!empty($this->getNomecategoria())) {
-            $verifica_categoria = DB::table('categoria')->select('id_categoria')->where('descricao', '=', $_POST['nomeCategoria']);
-            if ($verifica_categoria->get()->contains('id_categoria', $this->getId_categoria()) || $verifica_categoria->count() == 0) {
-                DB::table('categoria')->where('id_categoria', '=', $this->getId_categoria())->update([
-                    'descricao' => $this->getNomecategoria(),
-                ]);
-                $this->setResposta('alterado');
+    {
+        if (!empty($this->getId_categoria())) {
+            if (!empty($this->getDescricao())) {
+                $verifica_categoria = DB::table('categoria')->select('id_categoria')->where('descricao', '=', $this->getDescricao());
+                if ($verifica_categoria->get()->contains('id_categoria', $this->getId_categoria()) || $verifica_categoria->count() == 0) {
+                    DB::table('categoria')->where('id_categoria', '=', $this->getId_categoria())->update([
+                        'descricao' => $this->getDescricao(),
+                    ]);
+                    $this->setResposta('alterado');
+                } else {
+                    $this->setResposta('categoria_cadastrada');
+                }
             } else {
-                $this->setResposta('categoria_cadastrado');
+                $this->setResposta('vazio');
             }
         } else {
             $this->setResposta('vazio');
-        }              
+        }
     }
 
-    
+    public function cadastrarCategoria()
+    {
+        if (!empty($this->getDescricao())) {
+            $verifica_categoria = DB::table('categoria')->select('id_categoria')->where('descricao', '=', $this->getDescricao());
+            if ($verifica_categoria->get()->contains('id_categoria', $this->getId_categoria()) || $verifica_categoria->count() == 0) {
+                DB::table('categoria')->insert([
+                    'descricao' => $this->getDescricao(),
+                    'status' => '1'
+                ]);
+                $this->setResposta('cadastrado');
+            } else {
+                $this->setResposta('categoria_cadastrada');
+            }
+        } else {
+            $this->setResposta('vazio');
+        }
+    }
+
     public function alterarParametro()
-    {                       
+    {
         if (!empty($this->getValor())) {
-            DB::table('pdv')->where('id', '=', $this->getId())->update([
+            DB::table('parametros_de_venda')->where('id_parametro', '=', $this->getId_parametro())->update([
                 'valor' => $this->getValor(),
             ]);
             $this->setResposta('alterado');
         } else {
             $this->setResposta('vazio');
-        }              
+        }
     }
 }

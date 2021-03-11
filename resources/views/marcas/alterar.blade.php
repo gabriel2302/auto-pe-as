@@ -5,8 +5,8 @@
     <div class="col-md-6">
         <ul class="breadcrumb">
             <li><a href="/"><i class="fa fa-home"></i> Início</a></li>
-            <li><a href="/clientes">categorias</a></li>
-            <li class="active">Alterar categorias </li>
+            <li><a href="/marcas">Marcas</a></li>
+            <li class="active">Alterar marca</li>
         </ul>
     </div>
 </div>
@@ -16,7 +16,7 @@
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
-                    <h5>Alterar categorias</h5>
+                    <h5>Alterar marca</h5>
                 </div>
             </div>
             <div class="panel-body">
@@ -26,8 +26,6 @@
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <input  type="hidden" id="url_form" name="url_form" value="{{route('marcas-alterar')}}">                 
                     <div id="campos-cadastro" >
-                        <h5 class="underline mt-n">Informações pessoais</h5>
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -45,7 +43,7 @@
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
                                     <a href="/marcas" class="btn bg-black btn-wide"><i class="fa fa-times"></i>Voltar</a href="/marcas">
-                                    <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar"><i class="fa fa-arrow-right"></i>Alterar</button>
+                                    <button type="button" class="btn btn-primary btn-wide" id="btn-alterar"><i class="fa fa-arrow-right"></i>Alterar</button>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +78,7 @@
 <script>    
 
     $(document).ready(function() {
-        $('#btn-cadastrar').click(function(e) {
+        $('#btn-alterar').click(function(e) {
             e.preventDefault();
             $.ajaxSetup({
                 headers: {
@@ -88,7 +86,7 @@
                 }
             });
 
-            $('#btn-cadastrar').html('Cadastrando...');
+            $('#btn-alterar').html('Alterando...');
             var url_atual = document.getElementById('url_form').value;
             var modal_texto = document.getElementById('modal-resposta-texto');
 
@@ -100,21 +98,19 @@
 
                     if (response.resposta == 'alterado') {
                         modal_texto.innerHTML = '';
-                        modal_texto.innerHTML = 'Marca cadastrado com sucesso!';
+                        modal_texto.innerHTML = 'Marca alterada com sucesso!';
                         $('#modal-resposta').modal({
                             show: true
                         });
-                        document.getElementById("form-alterar-marca");
-                        $('#btn-cadastrar').html('Cadastrar');
-                        window.location.href = "/marcas";
+                        $('#btn-alterar').html('Alterar');
                     } else {
-                        if (response.resposta == 'marca_cadastrado') {
+                        if (response.resposta == 'marca_cadastrada') {
                             modal_texto.innerHTML = '';
-                            modal_texto.innerHTML = 'Desculpe, mas essa marca já está cadastrado!';
+                            modal_texto.innerHTML = 'Desculpe, mas essa marca já está cadastrada!';
                             $('#modal-resposta').modal({
                                 show: true
                             });
-                            $('#btn-cadastrar').html('Cadastrar');
+                            $('#btn-alterar').html('Alterar');
                         } else {
                             if (response.resposta == 'vazio') {
                                 modal_texto.innerHTML = '';
@@ -122,7 +118,7 @@
                                 $('#modal-resposta').modal({
                                     show: true
                                 });
-                                $('#btn-cadastrar').html('Cadastrar');
+                                $('#btn-alterar').html('Alterar');
                             } 
                         }
                     }
@@ -133,7 +129,7 @@
                     $('#modal-resposta').modal({
                         show: true
                     });
-                    $('#btn-cadastrar').html('Cadastrar');
+                    $('#btn-alterar').html('Alterar');
                 }
             });
         });

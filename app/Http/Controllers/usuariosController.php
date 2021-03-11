@@ -33,7 +33,8 @@ class usuariosController extends Controller
         return Response()->json($resposta);
     }
 
-    public function ativar(){
+    public function ativar()
+    {
         $usuarios = new usuariosModel();
         $usuarios->setId_usuarios($_POST['id_usuarios']);
         $usuarios->ativar();
@@ -44,7 +45,8 @@ class usuariosController extends Controller
     public function buscar()
     {
         $usuarios = DB::table('usuarios')->get();
-        return view('usuarios/usuarios', compact('usuarios'));
+        $funcoes = DB::table('funcao')->get();
+        return view('usuarios/usuarios', compact('usuarios', 'funcoes'));
     }
 
     public function cadastrar()
@@ -71,7 +73,8 @@ class usuariosController extends Controller
         return Response()->json($resposta);
     }
 
-    public function excluir(){
+    public function excluir()
+    {
         $usuarios = new usuariosModel();
         $usuarios->setId_usuarios($_POST['id_usuarios']);
         $usuarios->excluir();
@@ -96,10 +99,10 @@ class usuariosController extends Controller
                 $usuarios = DB::table('usuarios')->where('id_usuario', '=', $_GET['usuarios'])->get();
                 if (isset($_GET['alterar'])) {
                     $funcoes = DB::table('funcao')->get();
-                    return view('usuarios/alterar', compact('usuarios','funcoes'));
+                    return view('usuarios/alterar', compact('usuarios', 'funcoes'));
                 } else {
                     $funcoes = DB::table('funcao')->get();
-                    return view('usuarios/visualizar', compact('usuarios','funcoes'));
+                    return view('usuarios/visualizar', compact('usuarios', 'funcoes'));
                 }
             } else {
                 return redirect()->route('usuarios');
@@ -107,5 +110,5 @@ class usuariosController extends Controller
         } else {
             return redirect()->route('usuarios');
         }
-    }    
+    }
 }

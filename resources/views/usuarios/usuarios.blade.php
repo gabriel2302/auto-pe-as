@@ -15,7 +15,7 @@
     <div class="panel">
       <div class="panel-heading">
         <div class="panel-title">
-          <h5>Clientes</h5>
+          <h5>Usuários</h5>
         </div>
         <br>
         <div class="row">
@@ -34,6 +34,7 @@
               <th>Telefone</th>
               <th>WhatsApp</th>
               <th>Funcão</th>
+              <th>Situação</th>
               <th width="130px">Opções</th>
             </tr>
           </thead>
@@ -44,6 +45,7 @@
               <th>Telefone</th>
               <th>WhatsApp</th>
               <th>Funcão</th>
+              <th>Situação</th>
               <th width="130px">Opções</th>
             </tr>
           </tfoot>
@@ -54,11 +56,16 @@
               <td>{{$usuario->cpf}}</td>
               <td>{{$usuario->telefone}}</td>
               <td>{{$usuario->whatsapp}}</td>
-              <td>{{$usuario->funcao_id}}</td>
+              @foreach($funcoes as $funcao)
+              @if($funcao->id_funcao==$usuario->funcao_id)
+              <td>{{$funcao->descricao}}</td>
+              <td>{{$usuario->status=='1'?'Ativo':'Inativo'}}</td>
+              @endif
+              @endforeach
               <td style="display: flex; justify-content: space-between">
                 <a class="btn btn-primary" href="/usuarios/alterar?usuarios={{$usuario->id_usuario}}&alterar" title="Alterar"><i class="fa fa-pencil" style="margin: 0"></i></a>
-                <a class="btn bg-black" href="/usuarios/visualizar?usuarios={{$usuario->id_usuario}}&visualizar" title="Visualizar"><i class="fa fa-eye"  style="margin: 0"></i></a>
-                <a class="btn btn-danger" title="Excluir/Inativar"><i class="fa fa-trash"  style="margin: 0"></i></a>
+                <a class="btn bg-black" href="/usuarios/visualizar?usuarios={{$usuario->id_usuario}}&visualizar" title="Visualizar"><i class="fa fa-eye" style="margin: 0"></i></a>
+                <a class="btn btn-danger" title="Excluir/Inativar"><i class="fa fa-trash" style="margin: 0"></i></a>
                 @csrf
                 <meta name="csrf-token" content="{{ csrf_token() }}">
               </td>

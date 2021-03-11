@@ -1,15 +1,61 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\produtosModel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class produtosController extends Controller
 {
+
+    public function alterar()
+    {
+        $produto = new produtosModel();
+        $produto->setId_produto($_POST['id_produto']);
+        $produto->setNome($_POST['nome']);
+        $produto->setValor($_POST['valor']);
+        $produto->setMarca($_POST['marca']);
+        $produto->setCategoria($_POST['categoria']);
+        $produto->setDescricao($_POST['descricao']);
+        $produto->alterar();
+        $resposta = array('resposta' => $produto->getResposta());
+        return Response()->json($resposta);
+    }
+
+    public function ativar(){
+        $produto = new produtosModel();
+        $produto->setId_produto($_POST['id_produto']);
+        $produto->ativar();
+        $resposta = array('resposta' => $produto->getResposta());
+        return Response()->json($resposta);
+    }
+
     public function buscar()
     {
         $produtos = DB::table('produtos')->get();
         return view('produtos/produtos', compact('produtos'));
+    }
+
+    public function cadastrar()
+    {
+        $produto = new produtosModel();
+        $produto->setNome($_POST['nome']);
+        $produto->setValor($_POST['valor']);
+        $produto->setMarca($_POST['marca']);
+        $produto->setCategoria($_POST['categoria']);
+        $produto->setDescricao($_POST['descricao']);
+        $produto->cadastrar();
+        $resposta = array('resposta' => $produto->getResposta());
+        return Response()->json($resposta);
+    }
+
+    public function excluir(){
+        $produto = new produtosModel();
+        $produto->setId_produto($_POST['id_produto']);
+        $produto->excluir();
+        $resposta = array('resposta' => $produto->getResposta());
+        return Response()->json($resposta);
     }
 
     public function visualizar()
@@ -33,7 +79,5 @@ class produtosController extends Controller
         } else {
             return redirect()->route('produtos');
         }
-    }  
+    }
 }
-
-

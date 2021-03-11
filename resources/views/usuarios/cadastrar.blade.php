@@ -5,8 +5,8 @@
     <div class="col-md-6">
         <ul class="breadcrumb">
             <li><a href="/"><i class="fa fa-home"></i> Início</a></li>
-            <li><a href="/clientes">Clientes</a></li>
-            <li class="active">Cadastrar cliente (pessoa física)</li>
+            <li><a href="/usuarios">Usuários</a></li>
+            <li class="active">Cadastrar usuário</li>
         </ul>
     </div>
 </div>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-9">
                             <br>
-                            <span>Por favor, digite o número do CPF do cliente para que verifique se já está cadastrado!</span>
+                            <span>Por favor, digite o número do CPF do usuário para que verifique se já está cadastrado!</span>
                         </div>
                     </div>
 
@@ -140,19 +140,19 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="telefone">Telefone</label>
                                     <input type="text" class="form-control" id="telefone" name="telefone">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="celular">Celular</label>
                                     <input type="text" class="form-control" id="celular" name="celular">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="whatsapp">WhatsApp</label>
                                     <input type="text" class="form-control" id="whatsapp" name="whatsapp">
@@ -227,7 +227,7 @@
                 } else if (response.resposta == 'usuario_cadastrado') {
                     document.getElementById('campos-cadastro').style.display = 'none';
                     modal_texto.innerHTML = '';
-                    modal_texto.innerHTML = 'Desculpe, mas esse cliente já está cadastrado!';
+                    modal_texto.innerHTML = 'Desculpe, mas esse usuário já está cadastrado!';
                     $('#modal-resposta').modal({
                         show: true
                     });
