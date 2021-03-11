@@ -14,8 +14,12 @@ class parametrosModel extends Model
     private $resposta;
     private $nomeCategoria;
     private $id_categoria;
+<<<<<<< HEAD
     private $id;
     private $valor;
+=======
+    private $id_marca;
+>>>>>>> fef6f458ad24031894db3d31ea0d1aace429ceac
 
 
     public function getId_categoria()
@@ -26,6 +30,30 @@ class parametrosModel extends Model
     public function setId_categoria($id_categoria)
     {
         $this->id_categoria = $id_categoria;
+
+        return $this;
+    }
+
+    public function getId_marca()
+    {
+        return $this->id_marca;
+    }
+
+    public function setId_marca($id_marca)
+    {
+        $this->id_marca = $id_marca;
+
+        return $this;
+    }
+
+    public function getNomemarca()
+    {
+        return $this->descricao;
+    }
+
+    public function setNomemarca($nomeMarca)
+    {
+        $this->descricao = $nomeMarca;
 
         return $this;
     }
@@ -126,11 +154,11 @@ class parametrosModel extends Model
 
     public function alterarCategoria()
     {                       
-        if (!empty($this->getNome())) {
+        if (!empty($this->getNomecategoria())) {
             $verifica_categoria = DB::table('categoria')->select('id_categoria')->where('descricao', '=', $_POST['nomeCategoria']);
             if ($verifica_categoria->get()->contains('id_categoria', $this->getId_categoria()) || $verifica_categoria->count() == 0) {
                 DB::table('categoria')->where('id_categoria', '=', $this->getId_categoria())->update([
-                    'nome' => $this->getNome(),
+                    'descricao' => $this->getNomecategoria(),
                 ]);
                 $this->setResposta('alterado');
             } else {
@@ -141,6 +169,7 @@ class parametrosModel extends Model
         }              
     }
 
+<<<<<<< HEAD
     
     public function alterarParametro()
     {                       
@@ -149,10 +178,27 @@ class parametrosModel extends Model
                 'valor' => $this->getValor(),
             ]);
             $this->setResposta('alterado');
+=======
+    public function alterarMarca()
+    {                       
+        if (!empty($this->getNomemarca())) {
+            $verifica_marca = DB::table('marca')->select('id_marca')->where('descricao', '=', $_POST['nomeMarca']);
+            if ($verifica_marca->get()->contains('id_marca', $this->getId_marca()) || $verifica_marca->count() == 0) {
+                DB::table('marca')->where('id_marca', '=', $this->getId_marca())->update([
+                    'descricao' => $this->getNomemarca(),
+                ]);
+                $this->setResposta('alterado');
+            } else {
+                $this->setResposta('marca_cadastrado');
+            }
+>>>>>>> fef6f458ad24031894db3d31ea0d1aace429ceac
         } else {
             $this->setResposta('vazio');
         }              
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> fef6f458ad24031894db3d31ea0d1aace429ceac
 }

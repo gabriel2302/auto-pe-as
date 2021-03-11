@@ -94,20 +94,20 @@
             $.ajax({
                 url: "" + url_atual + "",
                 method: 'post',
-                data: $('#form-cadastrar-cliente').serialize(),
+                data: $('#form-cadastrar-categoria').serialize(),
                 success: function(response) {
 
-                    if (response.resposta == 'cadastrado') {
+                    if (response.resposta == 'alterado') {
                         modal_texto.innerHTML = '';
-                        modal_texto.innerHTML = 'Cliente cadastrado com sucesso!';
+                        modal_texto.innerHTML = 'Categoria alterada com sucesso!';
                         $('#modal-resposta').modal({
                             show: true
                         });
-                        document.getElementById("form-cadastrar-cliente").reset();
+                        document.getElementById("form-cadastrar-categoria").reset();
                         $('#btn-cadastrar').html('Cadastrar');
                         window.location.href = "/clientes";
                     } else {
-                        if (response.resposta == 'cliente_cadastrado') {
+                        if (response.resposta == 'categoria_cadastrado') {
                             modal_texto.innerHTML = '';
                             modal_texto.innerHTML = 'Desculpe, mas esse cliente já está cadastrado!';
                             $('#modal-resposta').modal({
@@ -122,16 +122,7 @@
                                     show: true
                                 });
                                 $('#btn-cadastrar').html('Cadastrar');
-                            } else {
-                                if (response.resposta == 'cpf_cnpj_invalido') {
-                                    modal_texto.innerHTML = '';
-                                    modal_texto.innerHTML = 'Desculpe, mas esse CPF é inválido!';
-                                    $('#modal-resposta').modal({
-                                        show: true
-                                    });
-                                    $('#btn-cadastrar').html('Cadastrar');
-                                }
-                            }
+                            } 
                         }
                     }
                 },

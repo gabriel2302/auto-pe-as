@@ -21,18 +21,19 @@
             </div>
             <div class="panel-body">
             @foreach($dados_marcas as $marca)
-                <form class="p-20" action="javascript:void(0)" method="POST" id="form-alterar-categoria">
+                <form class="p-20" action="javascript:void(0)" method="POST" id="form-alterar-marca">
                     @csrf
                     <meta name="csrf-token" content="{{ csrf_token() }}">
-                    <input type="hidden" id="url_form" name="url_form" value="#">                  
+                    <input  type="hidden" id="url_form" name="url_form" value="{{route('marcas-alterar')}}">                 
                     <div id="campos-cadastro" >
                         <h5 class="underline mt-n">Informações pessoais</h5>
 
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="nome">Nome <b>*</b></label>
-                                    <input type="text" class="form-control" id="nome" name="nome" value="{{$marca->descricao}}">
+                                    <label for="nomeMarca">Nome <b>*</b></label>
+                                    <input type="text" class="form-control" id="nomeMarca" name="nomeMarca" value="{{$marca->descricao}}">
+                                    <input  type="hidden" class="form-control" id="id_marca" name="id_marca" value="{{$marca->id_marca}}">
                                 </div>
                             </div>
                         </div>                        
@@ -94,22 +95,22 @@
             $.ajax({
                 url: "" + url_atual + "",
                 method: 'post',
-                data: $('#form-cadastrar-cliente').serialize(),
+                data: $('#form-alterar-marca').serialize(),
                 success: function(response) {
 
-                    if (response.resposta == 'cadastrado') {
+                    if (response.resposta == 'alterado') {
                         modal_texto.innerHTML = '';
-                        modal_texto.innerHTML = 'Cliente cadastrado com sucesso!';
+                        modal_texto.innerHTML = 'Marca cadastrado com sucesso!';
                         $('#modal-resposta').modal({
                             show: true
                         });
-                        document.getElementById("form-cadastrar-cliente").reset();
+                        document.getElementById("form-alterar-marca");
                         $('#btn-cadastrar').html('Cadastrar');
-                        window.location.href = "/clientes";
+                        window.location.href = "/marcas";
                     } else {
-                        if (response.resposta == 'cliente_cadastrado') {
+                        if (response.resposta == 'marca_cadastrado') {
                             modal_texto.innerHTML = '';
-                            modal_texto.innerHTML = 'Desculpe, mas esse cliente já está cadastrado!';
+                            modal_texto.innerHTML = 'Desculpe, mas essa marca já está cadastrado!';
                             $('#modal-resposta').modal({
                                 show: true
                             });
@@ -122,16 +123,7 @@
                                     show: true
                                 });
                                 $('#btn-cadastrar').html('Cadastrar');
-                            } else {
-                                if (response.resposta == 'cpf_cnpj_invalido') {
-                                    modal_texto.innerHTML = '';
-                                    modal_texto.innerHTML = 'Desculpe, mas esse CPF é inválido!';
-                                    $('#modal-resposta').modal({
-                                        show: true
-                                    });
-                                    $('#btn-cadastrar').html('Cadastrar');
-                                }
-                            }
+                            } 
                         }
                     }
                 },

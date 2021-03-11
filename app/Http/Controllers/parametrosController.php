@@ -79,13 +79,14 @@ class parametrosController extends Controller
     public function alterarCategoria()
     {
         $categorias = new parametrosModel();
-        $categorias->setNomecategoria($_POST['nome']);  
+        $categorias->setNomecategoria($_POST['nomeCategoria']);  
         $categorias->setId_categoria($_POST['id_categoria']);              
         $categorias->alterarCategoria();
         $resposta = array('resposta' => $categorias->getResposta());
         return Response()->json($resposta);
     }
 
+<<<<<<< HEAD
     function buscarParametrosDeVenda() {
         $parametros = DB::table('pdv')->get();
         return view('parametros-de-venda/visualizar', compact('parametros'));
@@ -98,6 +99,15 @@ class parametrosController extends Controller
         
         $parametro->alterarParametro();
         $resposta = array('resposta' => $parametro->getResposta());
+=======
+    public function alterarMarca()
+    {
+        $marcas = new parametrosModel();
+        $marcas->setNomemarca($_POST['nomeMarca']);  
+        $marcas->setId_marca($_POST['id_marca']);              
+        $marcas->alterarMarca();
+        $resposta = array('resposta' => $marcas->getResposta());
+>>>>>>> fef6f458ad24031894db3d31ea0d1aace429ceac
         return Response()->json($resposta);
     }
 }
