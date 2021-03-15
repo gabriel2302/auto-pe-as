@@ -57,8 +57,8 @@ Route::post('/clientes/ativar', [clientesController::class, 'ativar'])->name('cl
 Route::get('/produtos', [produtosController::class, 'buscar'])->name('produtos');
 
 Route::get('/produtos/cadastrar', function () {
-    $categorias = DB::table('categoria')->get();
-    $marcas = DB::table('marca')->get();
+    $categorias = DB::table('categoria')->where('status', '=', '1')->get();
+    $marcas = DB::table('marca')->where('status', '=', '1')->get();
     return view('produtos/cadastrar', compact('categorias', 'marcas'));
 });
 
@@ -101,7 +101,7 @@ Route::get('/categorias', [parametrosController::class, 'buscar'])->name('catego
 Route::get('/categorias/cadastrar', function () {
     return view('categorias/cadastrar');
 });
-Route::post('/categorias/cadastrar', [parametrosController::class, 'cadastrarCategoria'])->name('categorias-cadastrar');
+Route::post('/categorias/cadastrar', [parametrosController::class, 'cadastrarCategoria'])->name('categoria-cadastrar');
 
 Route::get('/categorias/alterar', [parametrosController::class, 'visualizar'])->name('categoria-alterar-visualizar');
 Route::post('/categorias/alterar', [parametrosController::class, 'alterarCategoria'])->name('categoria-alterar');

@@ -132,7 +132,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
-                                    <a href="/clientes" class="btn bg-black btn-wide"><i class="fa fa-times"></i>Voltar</a href="/clientes">
+                                    <a href="/clientes" class="btn bg-black btn-wide"><i class="fa fa-arrow-left"></i>Voltar</a href="/clientes">
                                     <button type="button" class="btn btn-primary btn-wide" id="btn-alterar" onclick="alterar()"><i class="fa fa-arrow-right"></i>Alterar</button>
                                 </div>
                             </div>
@@ -257,7 +257,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
-                                    <a href="/clientes" class="btn bg-black btn-wide"><i class="fa fa-times"></i>Voltar</a href="/clientes">
+                                    <a href="/clientes" class="btn bg-black btn-wide"><i class="fa fa-arrow-left"></i>Voltar</a href="/clientes">
                                     <button type="button" class="btn btn-primary btn-wide" id="btn-alterar" onclick="alterar()"><i class="fa fa-arrow-right"></i>Alterar</button>
                                 </div>
                             </div>

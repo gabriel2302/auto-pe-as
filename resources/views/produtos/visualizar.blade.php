@@ -76,7 +76,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
-                                    <a href="/produtos" class="btn bg-black btn-wide"><i class="fa fa-times"></i>Voltar</a href="/produtos">
+                                    <a href="/produtos" class="btn bg-black btn-wide"><i class="fa fa-arrow-left"></i>Voltar</a href="/produtos">
                                     <a href="/produtos/alterar?produto={{$produto->id_produto}}&alterar" type="button" class="btn btn-primary btn-wide" id="btn-cadastrar"><i class="fa fa-arrow-right"></i>Alterar</a>
                                 </div>
                             </div>

@@ -52,9 +52,9 @@
                 @csrf
                 <meta name="csrf-token" content="{{ csrf_token() }}">             
                 @if($categoria->status=='1')
-                <a class="btn btn-danger text-center" onclick="modal_excluir('{{$categoria->descricao}}', '{{$categoria->id_cate$categoria}}')" title="Excluir/Inativar"><i class="fa fa-trash"></i></a>
+                <a class="btn btn-danger text-center" onclick="modal_excluir('{{$categoria->descricao}}', '{{$categoria->id_categoria}}')" title="Excluir/Inativar"><i class="fa fa-trash"></i></a>
                 @else
-                <a class="btn btn-success" onclick="modal_ativar('{{$categoria->descricao}}', '{{$categoria->id_cate$categoria}}')" title="Ativar"><i class="fa fa-check"></i></a>
+                <a class="btn btn-success" onclick="modal_ativar('{{$categoria->descricao}}', '{{$categoria->id_categoria}}')" title="Ativar"><i class="fa fa-check"></i></a>
                 @endif
               </td>
             </tr>

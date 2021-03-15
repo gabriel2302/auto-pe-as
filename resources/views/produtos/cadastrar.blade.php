@@ -74,7 +74,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
-                                    <a href="/produtos" class="btn bg-black btn-wide"><i class="fa fa-times"></i>Voltar</a href="/clientes">
+                                    <a href="/produtos" class="btn bg-black btn-wide"><i class="fa fa-arrow-left"></i>Voltar</a href="/clientes">
                                     <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar"><i class="fa fa-arrow-right"></i>Cadastrar</button>
                                 </div>
                             </div>

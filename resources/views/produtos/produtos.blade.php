@@ -128,7 +128,7 @@
             });
           }
 
-          function ativar(id_cliente) {
+          function ativar(id_produto) {
             var modal_texto = document.getElementById('modal-resposta-texto');
 
             $.ajaxSetup({
@@ -195,7 +195,7 @@
             });
           }
 
-          function excluir(id_cliente) {
+          function excluir(id_produto) {
 
             var modal_texto = document.getElementById('modal-resposta-texto');
 

@@ -134,7 +134,7 @@ class parametrosController extends Controller
     }
 
     function buscarParametrosDeVenda() {
-        $parametros = DB::table('pdv')->get();
+        $parametros = DB::table('parametros_de_venda')->get();
         return view('parametros-de-venda/visualizar', compact('parametros'));
     }
 

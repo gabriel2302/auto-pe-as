@@ -121,7 +121,7 @@
                                     <a href="#"><i class="fa fa-users"></i> <span>Clientes</span> <i class="fa fa-angle-right arrow"></i></a>
                                     <ul class="child-nav">
                                         <li><a href="/clientes/cadastrar-pf"><i class="fa fa-pencil"></i> <span>Cadastrar pessoa física</span></a></li>
-                                        <li><a href="/clientes/cadastrar-pj"><i class="fa fa-pencil"></i> <span>Cadastrar pessoa física</span></a></li>
+                                        <li><a href="/clientes/cadastrar-pj"><i class="fa fa-pencil"></i> <span>Cadastrar pessoa jurídica</span></a></li>
                                         <li><a href="/clientes"><i class="fa fa-list"></i> <span>Visualizar</span></a></li>
                                     </ul>
                                 </li>

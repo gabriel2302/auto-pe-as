@@ -44,6 +44,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
+                                    <a href="#" class="btn bg-danger btn-wide" data-toggle="modal" data-target="#modal-limpar1"><i class="fa fa-eraser"></i>Limpar</a>
                                     <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar" onclick="alterarParametro('form-comissao')"><i class="fa fa-arrow-right"></i>Alterar</button>
                                 </div>
                             </div>
@@ -91,6 +92,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
+                                    <a href="#" class="btn bg-danger btn-wide" data-toggle="modal" data-target="#modal-limpar2"><i class="fa fa-eraser"></i>Limpar</a>
                                     <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar" onclick="alterarParametro('form-desconto')"><i class="fa fa-arrow-right"></i>Alterar</button>
                                 </div>
                             </div>
@@ -138,6 +140,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
+                                    <a href="#" class="btn bg-danger btn-wide" data-toggle="modal" data-target="#modal-limpar3"><i class="fa fa-eraser"></i>Limpar</a>
                                     <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar" onclick="alterarParametro('form-credito')"><i class="fa fa-arrow-right"></i>Alterar</button>
                                 </div>
                             </div>
@@ -163,6 +166,66 @@
             <div class="modal-footer">
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
+                </div>
+                <!-- /.btn-group -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-limpar1" tabindex="-1" role="dialog" aria-labelledby="modalLimparLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalLimparLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>
+            </div>
+            <div class="modal-body">
+                <p>Você tem certeza que deseja limpar % da comissão do vendedor?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
+                    <a href="#" onclick="document.getElementById('comissao').value=''" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i>Limpar</a>
+                </div>
+                <!-- /.btn-group -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-limpar2" tabindex="-1" role="dialog" aria-labelledby="modalLimparLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalLimparLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>
+            </div>
+            <div class="modal-body">
+                <p>Você tem certeza que deseja limpar a % de desconto em vendas?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
+                    <a href="#" onclick="document.getElementById('desconto').value=''" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i>Limpar</a>
+                </div>
+                <!-- /.btn-group -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-limpar3" tabindex="-1" role="dialog" aria-labelledby="modalLimparLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalLimparLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>
+            </div>
+            <div class="modal-body">
+                <p>Você tem certeza que deseja limpar o limite de venda em crédito?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
+                    <a href="#" onclick="document.getElementById('limite').value=''" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i>Limpar</a>
                 </div>
                 <!-- /.btn-group -->
             </div>
