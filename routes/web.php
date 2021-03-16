@@ -135,3 +135,9 @@ Route::post('/marcas/ativar', [parametrosController::class, 'ativarMarca'])->nam
 
 Route::get('/parametros-de-venda', [parametrosController::class, 'buscarParametrosDeVenda'])->name('parametros-de-venda');
 Route::post('/parametros-de-venda', [parametrosController::class, 'alterarParametrosDeVenda']);
+
+//Rota Login
+
+Route::get('/login', function () {
+    return view('login/login');
+});

@@ -64,32 +64,11 @@
                     <!-- /.navbar-header -->
 
                     <div class="collapse navbar-collapse" id="navbar-collapse-1">
-                        <ul class="nav navbar-nav" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                            <li class="hidden-sm hidden-xs"><a href="#" class="user-info-handle"><i class="fa fa-user"></i></a></li>
-                            <li class="hidden-sm hidden-xs"><a href="#" class="full-screen-handle"><i class="fa fa-arrows-alt"></i></a></li>
-
-                        </ul>
-                        <!-- /.nav navbar-nav -->
-
+                        
                         <ul class="nav navbar-nav navbar-right" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                             <li class="dropdown tour-two">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrador<span class="caret"></span></a>
-                                <ul class="dropdown-menu profile-dropdown">
-                                    <li class="profile-menu bg-gray">
-                                        <div class="">
-                                            <img src="http://placehold.it/60/c2c2c2?text=User" alt="John Doe" class="img-circle profile-img">
-                                            <div class="profile-name">
-                                                <h6>Administrador</h6>
-                                                <a href="#">View Profile</a>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-cog"></i>Configurações</a></li>
-                                    <li><a href="#"><i class="fa fa-sliders"></i>Minha Conta</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" class="color-danger text-center"><i class="fa fa-sign-out"></i> Logout</a></li>
-                                </ul>
+                                <a href="#" class="dropdown-toggle"  data-toggle="modal" data-target="#modal-sair" role="button" aria-haspopup="true" aria-expanded="false">Administrador</a>
+                                
                             </li>
                             <!-- /.dropdown -->
                         </ul>
@@ -162,6 +141,17 @@
 
                             </ul>
 
+                            <ul class="side-nav color-gray">
+                                <li class="has-children">
+                                    <a href="#" class="dropdown-toggle"  data-toggle="modal" data-target="#modal-sair">
+                                        <i class="fa fa-power-off" aria-hidden="true"></i><span>Sair</span>
+                                    </a>                                                              
+                                </li>
+
+                            </ul>
+
+                            
+                        
 
                         </div>
                         <!-- /.sidebar-nav -->
@@ -209,7 +199,25 @@
 
     </div>
     <!-- /.main-wrapper -->
-
+    <div class="modal fade" id="modal-sair" tabindex="-1" role="dialog" aria-labelledby="modalLimparLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalLimparLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>
+            </div>
+            <div class="modal-body">
+                <p>Você tem certeza que deseja sair?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
+                    <a href="#" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i>Sair</a>
+                </div>
+                <!-- /.btn-group -->
+            </div>
+        </div>
+    </div>
+</div>
     <!-- ========== COMMON JS FILES ========== -->
     <script src="/template/js/jquery/jquery-2.2.4.min.js"></script>
     <script src="/template/js/jquery-ui/jquery-ui.min.js"></script>
