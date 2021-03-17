@@ -22,15 +22,17 @@ use Illuminate\Support\Facades\Route;
 
 //Rota Login
 
-//Route::middleware(['usuario_logado'])->group(function () {
+Route::middleware(['usuario_logado'])->group(function () {
     Route::get('/login', function () {
         return view('login/login');
     })->name('login');
-//});
+});
 
 Route::post('/login', [usuariosController::class, 'login'])->name('efetua_login');
 
-//Route::middleware(['autenticacao'])->group(function () {
+Route::post('/logout', [usuariosController::class, 'logout'])->name('efetua_logout');
+
+Route::middleware(['autenticacao'])->group(function () {
 
     Route::get('/', function () {
         $numero_clientes = DB::table('clientes')->where('status', '=', '1')->count();
@@ -149,4 +151,4 @@ Route::post('/login', [usuariosController::class, 'login'])->name('efetua_login'
 
     Route::get('/parametros-de-venda', [parametrosController::class, 'buscarParametrosDeVenda'])->name('parametros-de-venda');
     Route::post('/parametros-de-venda', [parametrosController::class, 'alterarParametrosDeVenda']);
-//});
+});

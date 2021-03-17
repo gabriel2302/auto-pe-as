@@ -67,7 +67,7 @@ class usuariosController extends Controller
         $usuarios->setCidade($_POST['cidade']);
         $usuarios->setEstado($_POST['estado']);
         $usuarios->setFuncao_id($_POST['funcao_id']);
-        $usuarios->setSenha(password_hash($_POST['senha'], PASSWORD_DEFAULT));
+        $usuarios->setSenha($_POST['senha']);
         $usuarios->setStatus('1');
         $usuarios->cadastrar();
         $resposta = array('resposta' => $usuarios->getResposta());

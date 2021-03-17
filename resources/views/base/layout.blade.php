@@ -64,11 +64,11 @@
                     <!-- /.navbar-header -->
 
                     <div class="collapse navbar-collapse" id="navbar-collapse-1">
-                        
+
                         <ul class="nav navbar-nav navbar-right" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                             <li class="dropdown tour-two">
-                                <a href="#" class="dropdown-toggle"  data-toggle="modal" data-target="#modal-sair" role="button" aria-haspopup="true" aria-expanded="false">Administrador</a>
-                                
+                                <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#modal-sair" role="button" aria-haspopup="true" aria-expanded="false">{{session('usuario_nome')}}</a>
+
                             </li>
                             <!-- /.dropdown -->
                         </ul>
@@ -120,38 +120,38 @@
 
                             <ul class="side-nav color-gray">
                                 <li class="has-children">
-                                    <a href="#"><i class="fa fa-user"></i> <span>Usuários</span><i class="fa fa-angle-right arrow"></i></a>   
+                                    <a href="#"><i class="fa fa-user"></i> <span>Usuários</span><i class="fa fa-angle-right arrow"></i></a>
                                     <ul class="child-nav">
                                         <li><a href="/usuarios/cadastrar"><i class="fa fa-pencil"></i> <span>Cadastrar </span></a></li>
                                         <li><a href="/usuarios"><i class="fa fa-list"></i> <span>Visualizar</span></a></li>
-                                    </ul>                                     
+                                    </ul>
                                 </li>
 
                             </ul>
 
                             <ul class="side-nav color-gray">
                                 <li class="has-children">
-                                    <a href="#"><i class="fa fa-folder" aria-hidden="true"></i><span>Parâmetros</span><i class="fa fa-angle-right arrow"></i></a>   
+                                    <a href="#"><i class="fa fa-folder" aria-hidden="true"></i><span>Parâmetros</span><i class="fa fa-angle-right arrow"></i></a>
                                     <ul class="child-nav">
                                         <li><a href="/categorias"><i class="fa fa-list"></i> <span>Categorias </span></a></li>
                                         <li><a href="/marcas"><i class="fa fa-list"></i> <span>Marcas </span></a></li>
                                         <li><a href="/parametros-de-venda"><i class="fa fa-list"></i> <span>Parâmetros de venda </span></a></li>
-                                    </ul>                                     
+                                    </ul>
                                 </li>
 
                             </ul>
 
                             <ul class="side-nav color-gray">
                                 <li class="has-children">
-                                    <a href="#" class="dropdown-toggle"  data-toggle="modal" data-target="#modal-sair">
+                                    <a href="#" data-toggle="modal" data-target="#modal-sair">
                                         <i class="fa fa-power-off" aria-hidden="true"></i><span>Sair</span>
-                                    </a>                                                              
+                                    </a>
                                 </li>
 
                             </ul>
 
-                            
-                        
+
+
 
                         </div>
                         <!-- /.sidebar-nav -->
@@ -163,32 +163,29 @@
                 <div class="main-page">
                     <div class="container-fluid">
                         @yield('conteudo')
-                    </div>
-                </div>
 
-                <div class="right-sidebar bg-white fixed-sidebar">
-                    <div class="sidebar-content">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4>Useful Sidebar <i class="fa fa-times close-icon"></i></h4>
-                                    <p>Code for help is added within the main page. Check for code below the example.</p>
-                                    <p>You can use this sidebar to help your end-users. You can enter any HTML in this sidebar.</p>
-                                    <p>This sidebar can be a 'fixed to top' or you can unpin it to scroll with main page.</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <!-- Logout Modal-->
+                        <div class="modal fade" id="modal-sair" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Você deseja sair?</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">Clique em "Logout" para encerrar sua sessão.</div>
+                                    <div class="modal-footer">
+                                        <form action="{{ route('efetua_logout') }}" method="POST">
+                                            @csrf
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary" id="btn-logout" name="btn-logout">Logout</button>
+                                        </form>
+                                    </div>
                                 </div>
-                                <!-- /.col-md-12 -->
-
-                                <div class="text-center mt-20">
-                                    <button type="button" class="btn btn-success btn-labeled">Purchase Now<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span></button>
-                                </div>
-                                <!-- /.text-center -->
                             </div>
-                            <!-- /.row -->
                         </div>
-                        <!-- /.container-fluid -->
                     </div>
-                    <!-- /.sidebar-content -->
                 </div>
                 <!-- /.right-sidebar -->
 
@@ -199,25 +196,7 @@
 
     </div>
     <!-- /.main-wrapper -->
-    <div class="modal fade" id="modal-sair" tabindex="-1" role="dialog" aria-labelledby="modalLimparLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="modalLimparLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>
-            </div>
-            <div class="modal-body">
-                <p>Você tem certeza que deseja sair?</p>
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
-                    <a href="#" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i>Sair</a>
-                </div>
-                <!-- /.btn-group -->
-            </div>
-        </div>
-    </div>
-</div>
+
     <!-- ========== COMMON JS FILES ========== -->
     <script src="/template/js/jquery/jquery-2.2.4.min.js"></script>
     <script src="/template/js/jquery-ui/jquery-ui.min.js"></script>
