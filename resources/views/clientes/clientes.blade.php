@@ -35,6 +35,7 @@
               <th>Telefone</th>
               <th>WhatsApp</th>
               <th>Situação</th>
+              <th style="display: none;">Endereço</th>
               <th width="130px">Opções</th>
             </tr>
           </thead>
@@ -45,6 +46,7 @@
               <th>Telefone</th>
               <th>WhatsApp</th>
               <th>Situação</th>
+              <th style="display: none;">Endereço</th>
               <th width="130px">Opções</th>
             </tr>
           </tfoot>
@@ -56,6 +58,7 @@
               <td>{{$cliente->telefone}}</td>
               <td>{{$cliente->whatsapp}}</td>
               <td>{{$cliente->status=='1'?'Ativo':'Inativo'}}</td>
+              <td style="display: none;">{{$cliente->endereco}}, {{$cliente->numero}} - {{$cliente->bairro}} - {{$cliente->cidade}} / {{$cliente->estado}}</td>
               <td>
                 <a class="btn btn-primary" href="/clientes/alterar?cliente={{$cliente->id_cliente}}&alterar" title="Alterar"><i class="fa fa-pencil"></i></a>
                 <a class="btn bg-black" href="/clientes/visualizar?cliente={{$cliente->id_cliente}}&visualizar" title="Visualizar"><i class="fa fa-eye"></i></a>
@@ -94,12 +97,46 @@
           </div>
         </div>
 
+        <style>
+          .btn .fa {
+              margin-right: 0;
+          }
+          .dt-buttons{
+            margin-bottom: 10px;
+          }
+        </style>
 
 
         <!-- ========== JS ========== -->
         <script type="text/javascript">
           $(document).ready(function() {
-            $('#example').DataTable();
+            $('#example').DataTable({
+              dom: "<'row'<'col-md-12 text-right pb-2'B>>\
+      <'row'<'col-md-6'l><'col-md-6'f>>\
+      <'row'<'col-md-12'rt>>\
+      <'row'<'col-md-6'i><'col-md-6'p>>",
+              buttons: [
+                {
+                  extend: 'print',
+                  title: 'Relatório de clientes',
+                  text: '<i title="Imprimir" class="fa fa-print"></i>',
+                  className: 'btn btn-primary',
+                  orientation: 'landscape',
+                  exportOptions: {
+                    modifier: {
+                      page: 'current'
+                    },
+                    columns: [0,1, 2, 3, 5]
+                  },
+                },
+               
+              ],
+              "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "Todos"]
+              ],
+              "order": [1, "desc"]
+            });
           });
 
           function modal_ativar(cliente, id_cliente) {
