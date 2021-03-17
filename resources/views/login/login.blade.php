@@ -43,10 +43,13 @@
                         <div class="alert alert-danger" role="alert">
                             Login e/ou senha inválidos!
                         </div>
+                        @else
+                        {{$_GET['resposta']}}
                         @endif
                         @endif
-                        <form action="{{route('efetua_login')}}" method="POST">
-                        @csrf
+                        <form action="" method="POST" id="form-entrar">
+                            @csrf
+                            <input type="hidden" id="url_form" name="url_form" value="{{route('efetua_login')}}">
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control input-lg" id="email" name="email" autofocus autocomplete="off" required>
@@ -58,7 +61,7 @@
 
                             <div class="form-group mt-20">
                                 <div class="">
-                                    <button type="submit" class="btn btn-success btn-labeled pull-right">Entrar<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span></button>
+                                    <button type="button" class="btn btn-success btn-labeled pull-right" id="btn-entrar">Entrar<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span></button>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
@@ -76,6 +79,26 @@
     </div>
     <!-- /.main-wrapper -->
 
+
+    <div class="modal fade" id="modal-resposta" tabindex="-1" role="dialog" aria-labelledby="modaRespostaLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalRespostaLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-resposta-texto"></p>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
+                    </div>
+                    <!-- /.btn-group -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ========== COMMON JS FILES ========== -->
     <script src="/template/js/jquery/jquery-2.2.4.min.js"></script>
     <script src="/template/js/jquery-ui/jquery-ui.min.js"></script>
@@ -89,8 +112,80 @@
     <!-- ========== THEME JS ========== -->
     <script src="/template/js/main.js"></script>
     <script>
-        $(function() {
+        $(document).ready(function() {
+            $('#btn-entrar').click(function(e) {
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
+                $('#btn-entrar').html('Entrando... <span class="btn-label btn-label-right"><i class="fa fa-check"></i></span>');
+                var url_atual = document.getElementById('url_form').value;
+                var modal_texto = document.getElementById('modal-resposta-texto');
+
+                $.ajax({
+                    url: "" + url_atual + "",
+                    method: 'post',
+                    data: $('#form-entrar').serialize(),
+                    success: function(response) {
+
+                        if (response.resposta == 'liberado') {
+                            modal_texto.innerHTML = '';
+                            modal_texto.innerHTML = 'Login efetuado com sucesso!';
+                            $('#modal-resposta').modal({
+                                show: true
+                            });
+                            $('#btn-entrar').html('Entrar<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span>');
+                            window.location.href = "/";
+                        } else {
+                            if (response.resposta == 'login_invalido') {
+                                modal_texto.innerHTML = '';
+                                modal_texto.innerHTML = 'Desculpe, mas esse o e-mail/senha são inválidos!';
+                                $('#modal-resposta').modal({
+                                    show: true
+                                });
+                                $('#btn-entrar').html('Entrar<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span>');
+                            } else {
+                                if (response.resposta == 'vazio') {
+                                    modal_texto.innerHTML = '';
+                                    modal_texto.innerHTML = 'Por favor, verifique se os campos obrigatórios foram preenchidos!';
+                                    $('#modal-resposta').modal({
+                                        show: true
+                                    });
+                                    $('#btn-entrar').html('Entrar<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span>');
+                                } else {
+                                    if (response.resposta == 'bloqueado') {
+                                        modal_texto.innerHTML = '';
+                                        modal_texto.innerHTML = 'Desculpe, mas esse usuário encontra-se bloqueado!';
+                                        $('#modal-resposta').modal({
+                                            show: true
+                                        });
+                                        $('#btn-entrar').html('Entrar<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span>');
+                                    }
+                                    else{
+                                        modal_texto.innerHTML = '';
+                                        modal_texto.innerHTML = response.resposta;
+                                        $('#modal-resposta').modal({
+                                            show: true
+                                        });
+                                        $('#btn-entrar').html('Entrar<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span>');
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    error: function(response) {
+                        modal_texto.innerHTML = '';
+                        modal_texto.innerHTML = 'Erro: ' + response.responseJSON.message;
+                        $('#modal-resposta').modal({
+                            show: true
+                        });
+                        $('#btn-entrar').html('Entrar<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span>');
+                    }
+                });
+            });
         });
     </script>
 

@@ -95,6 +95,7 @@
                         <!-- /.user-info -->
 
                         <div class="sidebar-nav">
+                            @if(session('usuario_funcao_id')=='1' || session('usuario_funcao_id')=='2')
                             <ul class="side-nav color-gray">
                                 <li class="has-children">
                                     <a href="#"><i class="fa fa-users"></i> <span>Clientes</span> <i class="fa fa-angle-right arrow"></i></a>
@@ -117,7 +118,8 @@
                                 </li>
 
                             </ul>
-
+                            @endif
+                            @if(session('usuario_funcao_id')=='1')
                             <ul class="side-nav color-gray">
                                 <li class="has-children">
                                     <a href="#"><i class="fa fa-user"></i> <span>Usuários</span><i class="fa fa-angle-right arrow"></i></a>
@@ -138,8 +140,8 @@
                                         <li><a href="/parametros-de-venda"><i class="fa fa-list"></i> <span>Parâmetros de venda </span></a></li>
                                     </ul>
                                 </li>
-
                             </ul>
+                            @endif
 
                             <ul class="side-nav color-gray">
                                 <li class="has-children">

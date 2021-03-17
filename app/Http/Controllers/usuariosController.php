@@ -67,7 +67,7 @@ class usuariosController extends Controller
         $usuarios->setCidade($_POST['cidade']);
         $usuarios->setEstado($_POST['estado']);
         $usuarios->setFuncao_id($_POST['funcao_id']);
-        $usuarios->setSenha($_POST['senha']);
+        $usuarios->setSenha(password_hash($_POST['senha'], PASSWORD_DEFAULT));
         $usuarios->setStatus('1');
         $usuarios->cadastrar();
         $resposta = array('resposta' => $usuarios->getResposta());
@@ -88,13 +88,8 @@ class usuariosController extends Controller
         $usuarios->setEmail($_POST['email']);
         $usuarios->setSenha($_POST['senha']);
         $usuarios->login();
-        $resposta = $usuarios->getResposta();
-        if($resposta=='liberado'){
-            return redirect()->route('inicio');
-        }
-        else{
-            return redirect()->route('login', compact('resposta'));
-        }
+        $resposta = array('resposta' => $usuarios->getResposta());
+        return Response()->json($resposta);
     }
 
     public function logout(Request $request){

@@ -82,7 +82,6 @@
                                 <div class="form-group">
                                     <label for="senha">Senha <b>*</b></label>
                                     <input type="password" class="form-control" id="senha" name="senha">
-                                    <input type="hidden" id="tipo_pessoa" name="senha" value="senha">
                                 </div>
                             </div>
                         </div>

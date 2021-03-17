@@ -379,11 +379,11 @@ class usuariosModel extends Model
     public function login()
     {
         if (!empty($this->getEmail()) && !empty($this->getSenha())) {
-            $usuario = DB::table('usuarios')->select('id_usuario', 'nome', 'email', 'senha', 'funcao_id', 'status')->where('email', '=', $this->getEmail())->get();
-            foreach ($usuario as $user) {
-                $senha = $user->senha;
+            $usuario = DB::table('usuarios')->select('id_usuario', 'nome', 'email', 'senha', 'funcao_id', 'status')->where('email', '=', $this->getEmail())->first();
+            if(!empty($usuario)){
+                $senha = $usuario->senha;
             }
-            if ($this->getSenha()== $senha) {
+            if (password_verify($this->getSenha(), $senha)) {
                 $usuario = DB::table('usuarios')->where('email', '=', $this->getEmail())->first();
                 $this->setId_usuario($usuario->id_usuario);
                 $this->setNome($usuario->nome);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\parametrosModel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class parametrosController extends Controller
 {
