@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\usuariosModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class usuariosController extends Controller
 {
@@ -80,6 +81,27 @@ class usuariosController extends Controller
         $usuarios->excluir();
         $resposta = array('resposta' => $usuarios->getResposta());
         return Response()->json($resposta);
+    }
+
+    public function login(){
+        $usuarios = new usuariosModel();
+        $usuarios->setEmail($_POST['email']);
+        $usuarios->setSenha($_POST['senha']);
+        $usuarios->login();
+        $resposta = $usuarios->getResposta();
+        if($resposta=='liberado'){
+            return redirect()->route('inicio');
+        }
+        else{
+            return redirect()->route('login', compact('resposta'));
+        }
+    }
+
+    public function logout(Request $request){
+        if($request->session()->exists('usuario_id')){
+            Session::flush();
+            return redirect()->route('login');
+        }
     }
 
     public function verificarusuarios()

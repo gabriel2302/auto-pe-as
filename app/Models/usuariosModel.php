@@ -186,7 +186,7 @@ class usuariosModel extends Model
         return $this;
     }
 
-   
+
     public function getStatus()
     {
         return $this->status;
@@ -228,7 +228,7 @@ class usuariosModel extends Model
         return $this->funcao_id;
     }
 
-    
+
     public function setFuncao_id($funcao_id)
     {
         $this->funcao_id = $funcao_id;
@@ -330,7 +330,7 @@ class usuariosModel extends Model
                 } else {
                     $this->setResposta('cpf_invalido');
                 }
-            } 
+            }
         } else {
             $this->setResposta('vazio');
         }
@@ -352,7 +352,7 @@ class usuariosModel extends Model
                 } else {
                     $this->setResposta('cpf_invalido');
                 }
-            } 
+            }
         } else {
             $this->setResposta('vazio');
         }
@@ -376,4 +376,40 @@ class usuariosModel extends Model
         }
     }
 
+    public function login()
+    {
+        if (!empty($this->getEmail()) && !empty($this->getSenha())) {
+            $usuario = DB::table('usuarios')->where('email', '=', $this->getEmail())->get();
+            foreach ($usuario as $user) {
+                $senha = $user->senha;
+            }
+            if (password_verify($this->getSenha(), $senha)) {
+                $usuario = DB::table('usuarios')->where('email', '=', $this->getEmail())->get();
+                $this->setId_usuario($usuario->id_usuario);
+                $this->setNome($usuario->nome);
+                $this->setFuncao_id($usuario->funcao_id);
+                $this->setStatus($usuario->status);
+
+                if ($this->getStatus() == '1') {
+                    session([
+                        'usuario_id' => $this->getId_usuario(),
+                        'usuario_nome' => $this->getNome(),
+                        'usuario_funcao_id' => $this->getFuncao_id(),
+                        'usuario_status' => $this->getStatus()
+                    ]);
+                    $this->setResposta('liberado');
+                } else {
+                    $this->setResposta('bloqueado');
+                }
+            } else {
+                $this->setResposta('login_invalido');
+            }
+        } else {
+            $this->setResposta('vazio');
+        }
+    }
+
+    public function logout()
+    {
+    }
 }
