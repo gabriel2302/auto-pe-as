@@ -150,6 +150,16 @@
 
                             <ul class="side-nav color-gray">
                                 <li class="has-children">
+                                    <a href="#"><i class="fa fa-money" aria-hidden="true"></i><span>Vendas</span><i class="fa fa-angle-right arrow"></i></a>
+                                    <ul class="child-nav">
+                                        <li><a href="/vendas"><i class="fa fa-pencil"></i> <span>Cadastrar </span></a></li>
+                                        <li><a href="/vendas/visualizar"><i class="fa fa-list"></i> <span>Visualizar </span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <ul class="side-nav color-gray">
+                                <li class="has-children">
                                     <a href="#" data-toggle="modal" data-target="#modal-sair">
                                         <i class="fa fa-power-off" aria-hidden="true"></i><span>Sair</span>
                                     </a>

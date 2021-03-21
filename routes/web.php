@@ -4,20 +4,12 @@ use App\Http\Controllers\clientesController;
 use App\Http\Controllers\produtosController;
 use App\Http\Controllers\usuariosController;
 use App\Http\Controllers\parametrosController;
+use App\Http\Controllers\vendasController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 //Rota Login
 
@@ -162,4 +154,16 @@ Route::middleware(['autenticacao'])->group(function () {
         Route::get('/parametros-de-venda', [parametrosController::class, 'buscarParametrosDeVenda'])->name('parametros-de-venda');
         Route::post('/parametros-de-venda', [parametrosController::class, 'alterarParametrosDeVenda']);
     });
+
+    Route::get('/vendas', [vendasController::class, 'buscar'])->name('vendas');
+
+    Route::get('/vendas/cadastrar', function () {
+        $produtos = DB::table('produtos')->where('status', '=', '1')->get();
+        $clientes = DB::table('clientes')->where('status', '=', '1')->get();
+        $desconto = DB::table('parametros_de_venda')->where('id_parametro', '=', '2')->first();
+        return view('vendas/cadastrar', compact('produtos','clientes', 'desconto'));
+    });
+
+    Route::get('/vendas/visualizar', [vendasController::class, 'visualizar'])->name('vendas-visualizar');
+
 });
