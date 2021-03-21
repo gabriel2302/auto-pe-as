@@ -119,7 +119,7 @@
                 {
                   extend: 'print',
                   title: 'Relatório de clientes',
-                  text: '<i title="Imprimir" class="fa fa-print"></i>',
+                  text: '<i title="Imprimir" class="fa fa-print"></i> Emitir relatório',
                   className: 'btn btn-primary',
                   orientation: 'landscape',
                   exportOptions: {
