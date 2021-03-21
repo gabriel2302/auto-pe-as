@@ -80,4 +80,10 @@ class produtosController extends Controller
             return redirect()->route('produtos');
         }
     }
+    
+    public function entradaVisualizar()
+    {
+        $entradas = DB::table('entrada_produtos')->get();
+        return view('produtos/entrada', compact('entradas'));
+    }
 }

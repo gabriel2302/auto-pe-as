@@ -110,7 +110,6 @@
                                         <li><a href="/clientes"><i class="fa fa-list"></i> <span>Visualizar</span></a></li>
                                     </ul>
                                 </li>
-
                             </ul>
 
                             <ul class="side-nav color-gray">
@@ -119,6 +118,7 @@
                                     <ul class="child-nav">
                                         <li><a href="/produtos/cadastrar"><i class="fa fa-pencil"></i> <span>Cadastrar </span></a></li>
                                         <li><a href="/produtos"><i class="fa fa-list"></i> <span>Visualizar</span></a></li>
+                                        <li><a href="/produtos/entrada"><i class="fa fa-cart-arrow-down"></i> <span>Entradas</span></a></li>
                                     </ul>
                                 </li>
 

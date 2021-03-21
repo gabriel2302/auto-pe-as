@@ -90,6 +90,13 @@ Route::middleware(['autenticacao'])->group(function () {
         Route::post('/produtos/excluir', [produtosController::class, 'excluir'])->name('produtos-excluir');
 
         Route::post('/produtos/ativar', [produtosController::class, 'ativar'])->name('produtos-ativar');
+        
+        Route::get('/produtos/entrada', [produtosController::class, 'entradaVisualizar'])->name('produtos-entrada');
+        
+        Route::get('/produtos/cadastrar-entrada', function () {
+            $produtos = DB::table('produtos')->where('status', '=', '1')->get();
+            return view('produtos/cadastrar-entrada', compact('produtos'));
+        });
     });
 
     Route::middleware(['admin'])->group(function () {
