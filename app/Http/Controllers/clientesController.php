@@ -15,9 +15,11 @@ class clientesController extends Controller
         if ($_POST['tipo_pessoa'] == 'pf') {
             $cliente->setNome_fantasia($_POST['nome']);
             $cliente->setRazao_social($_POST['nome']);
+            $cliente->setTipo_pessoa('pessoa_fisica');
         } else {
             $cliente->setNome_fantasia($_POST['nome_fantasia']);
             $cliente->setRazao_social($_POST['razao_social']);
+            $cliente->setTipo_pessoa('pessoa_juridica');
         }
         $cliente->setCpf_cnpj($_POST['cpf_cnpj']);
         $cliente->setTelefone($_POST['telefone']);
@@ -31,7 +33,6 @@ class clientesController extends Controller
         $cliente->setBairro($_POST['bairro']);
         $cliente->setCidade($_POST['cidade']);
         $cliente->setEstado($_POST['estado']);
-        $_POST['tipo_pessoa'] == 'pf' ? $cliente->setTipo_pessoa('pessoa_fisica') : $cliente->setTipo_pessoa('pessoa_juridica');
         date_default_timezone_set('America/Sao_Paulo');
         $cliente->setData_alteracao(date('Y-m-d H:i:s'));
         $cliente->setStatus('1');
@@ -40,7 +41,8 @@ class clientesController extends Controller
         return Response()->json($resposta);
     }
 
-    public function ativar(){
+    public function ativar()
+    {
         $cliente = new clientesModel();
         $cliente->setId_cliente($_POST['id_cliente']);
         $cliente->ativar();
@@ -60,9 +62,11 @@ class clientesController extends Controller
         if ($_POST['tipo_pessoa'] == 'pf') {
             $cliente->setNome_fantasia($_POST['nome']);
             $cliente->setRazao_social($_POST['nome']);
+            $cliente->setTipo_pessoa('pessoa_fisica');
         } else {
             $cliente->setNome_fantasia($_POST['nome_fantasia']);
             $cliente->setRazao_social($_POST['razao_social']);
+            $cliente->setTipo_pessoa('pessoa_juridica');
         }
         $cliente->setCpf_cnpj($_POST['cpf_cnpj']);
         $cliente->setTelefone($_POST['telefone']);
@@ -76,8 +80,9 @@ class clientesController extends Controller
         $cliente->setBairro($_POST['bairro']);
         $cliente->setCidade($_POST['cidade']);
         $cliente->setEstado($_POST['estado']);
-        $_POST['tipo_pessoa'] == 'pf' ? $cliente->setTipo_pessoa('pessoa_fisica') : $cliente->setTipo_pessoa('pessoa_juridica');
-        $cliente->setCredito('500.00');
+        $credito = DB::table('parametros_de_venda')->select('valor')->where('id_parametro', '=', '3')->first();
+        $credito = $credito->valor;
+        $cliente->setCredito($credito);
         date_default_timezone_set('America/Sao_Paulo');
         $cliente->setData_cadastro(date('Y-m-d H:i:s'));
         $cliente->setStatus('1');
@@ -86,7 +91,8 @@ class clientesController extends Controller
         return Response()->json($resposta);
     }
 
-    public function excluir(){
+    public function excluir()
+    {
         $cliente = new clientesModel();
         $cliente->setId_cliente($_POST['id_cliente']);
         $cliente->excluir();
@@ -120,5 +126,5 @@ class clientesController extends Controller
         } else {
             return redirect()->route('clientes');
         }
-    }    
+    }
 }

@@ -111,31 +111,9 @@
                                     </ul>
                                 </li>
                             </ul>
-
-                            <ul class="side-nav color-gray">
-                                <li class="has-children">
-                                    <a href="#"><i class="fa fa-cart-plus" aria-hidden="true"></i><span>Produtos</span><i class="fa fa-angle-right arrow"></i></a>
-                                    <ul class="child-nav">
-                                        <li><a href="/produtos/cadastrar"><i class="fa fa-pencil"></i> <span>Cadastrar </span></a></li>
-                                        <li><a href="/produtos"><i class="fa fa-list"></i> <span>Visualizar</span></a></li>
-                                        <li><a href="/produtos/entrada"><i class="fa fa-cart-arrow-down"></i> <span>Entradas</span></a></li>
-                                    </ul>
-                                </li>
-
-                            </ul>
                             @endif
+
                             @if(session('usuario_funcao_id')=='1')
-                            <ul class="side-nav color-gray">
-                                <li class="has-children">
-                                    <a href="#"><i class="fa fa-user"></i> <span>Usuários</span><i class="fa fa-angle-right arrow"></i></a>
-                                    <ul class="child-nav">
-                                        <li><a href="/usuarios/cadastrar"><i class="fa fa-pencil"></i> <span>Cadastrar </span></a></li>
-                                        <li><a href="/usuarios"><i class="fa fa-list"></i> <span>Visualizar</span></a></li>
-                                    </ul>
-                                </li>
-
-                            </ul>
-
                             <ul class="side-nav color-gray">
                                 <li class="has-children">
                                     <a href="#"><i class="fa fa-folder" aria-hidden="true"></i><span>Parâmetros</span><i class="fa fa-angle-right arrow"></i></a>
@@ -148,16 +126,42 @@
                             </ul>
                             @endif
 
+                            @if(session('usuario_funcao_id')=='1' || session('usuario_funcao_id')=='2')
+                            <ul class="side-nav color-gray">
+                                <li class="has-children">
+                                    <a href="#"><i class="fa fa-cart-plus" aria-hidden="true"></i><span>Produtos</span><i class="fa fa-angle-right arrow"></i></a>
+                                    <ul class="child-nav">
+                                        <li><a href="/produtos/cadastrar"><i class="fa fa-pencil"></i> <span>Cadastrar </span></a></li>
+                                        <li><a href="/produtos/entrada"><i class="fa fa-cart-arrow-down"></i> <span>Entradas de produtos</span></a></li>
+                                        <li><a href="/produtos"><i class="fa fa-list"></i> <span>Visualizar</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            @endif
+
+                            @if(session('usuario_funcao_id')=='1')
+                            <ul class="side-nav color-gray">
+                                <li class="has-children">
+                                    <a href="#"><i class="fa fa-user"></i> <span>Usuários</span><i class="fa fa-angle-right arrow"></i></a>
+                                    <ul class="child-nav">
+                                        <li><a href="/usuarios/cadastrar"><i class="fa fa-pencil"></i> <span>Cadastrar </span></a></li>
+                                        <li><a href="/usuarios/comissoes"><i class="fa fa-dollar"></i> <span>Comissões dos vendedores</span></a></li>
+                                        <li><a href="/usuarios"><i class="fa fa-list"></i> <span>Visualizar</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            @endif
+
                             <ul class="side-nav color-gray">
                                 <li class="has-children">
                                     <a href="#"><i class="fa fa-money" aria-hidden="true"></i><span>Vendas</span><i class="fa fa-angle-right arrow"></i></a>
                                     <ul class="child-nav">
-                                        <li><a href="/vendas"><i class="fa fa-pencil"></i> <span>Cadastrar </span></a></li>
-                                        <li><a href="/vendas/visualizar"><i class="fa fa-list"></i> <span>Visualizar </span></a></li>
+                                        <li><a href="/vendas/efetuar"><i class="fa fa-pencil"></i> <span>Efetuar </span></a></li>
+                                        <li><a href="/vendas"><i class="fa fa-list"></i> <span>Visualizar </span></a></li>
                                     </ul>
                                 </li>
                             </ul>
-
+                            <hr>
                             <ul class="side-nav color-gray">
                                 <li class="has-children">
                                     <a href="#" data-toggle="modal" data-target="#modal-sair">

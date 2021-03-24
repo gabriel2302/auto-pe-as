@@ -60,10 +60,16 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="email">E-mail</label>
                                     <input type="email" class="form-control" id="email" name="email" value="{{$usuario->email}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="senha">Senha</label>
+                                    <input type="password" class="form-control" id="senha" name="senha">
                                 </div>
                             </div>
                         </div>
@@ -221,22 +227,21 @@
 </div>
 
 <script>
-    function limpar()
-    {
-        document.getElementById('nome').value='';
-        document.getElementById('cpf').value='';
-        document.getElementById('funcao_id').value='';
-        document.getElementById('email').value='';
-        document.getElementById('cep').value='';
-        document.getElementById('endereco').value='';
-        document.getElementById('numero').value='';
-        document.getElementById('complemento').value='';
-        document.getElementById('bairro').value='';
-        document.getElementById('cidade').value='';
-        document.getElementById('estado').value='';
-        document.getElementById('telefone').value='';
-        document.getElementById('celular').value='';
-        document.getElementById('whatsapp').value='';
+    function limpar() {
+        document.getElementById('nome').value = '';
+        document.getElementById('cpf').value = '';
+        document.getElementById('funcao_id').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('cep').value = '';
+        document.getElementById('endereco').value = '';
+        document.getElementById('numero').value = '';
+        document.getElementById('complemento').value = '';
+        document.getElementById('bairro').value = '';
+        document.getElementById('cidade').value = '';
+        document.getElementById('estado').value = '';
+        document.getElementById('telefone').value = '';
+        document.getElementById('celular').value = '';
+        document.getElementById('whatsapp').value = '';
     }
 
     $(document).ready(function() {

@@ -391,7 +391,7 @@ class clientesModel extends Model
                     if (!empty($this->getNome_fantasia()) && !empty($this->getRazao_social()) && !empty($this->getCpf_cnpj()) && !empty($this->getCep()) && !empty($this->getEndereco()) && !empty($this->getNumero()) && !empty($this->getBairro()) && !empty($this->getCidade()) && !empty($this->getEstado())) {
                         $verifica_cliente = DB::table('clientes')->select('id_cliente')->where('cpf_cnpj', '=', $_POST['cpf_cnpj']);
                         if ($verifica_cliente->get()->contains('id_cliente', $this->getId_cliente()) || $verifica_cliente->count() == 0) {
-                            DB::table('clientes')->where('id_cliente', '=', $this->getId_cliente())->insert([
+                            DB::table('clientes')->where('id_cliente', '=', $this->getId_cliente())->update([
                                 'nome_fantasia' => $this->getNome_fantasia(),
                                 'razao_social' => $this->getRazao_social(),
                                 'cpf_cnpj' => $this->getCpf_cnpj(),
@@ -505,8 +505,16 @@ class clientesModel extends Model
     public function excluir()
     {
         if (!empty($this->getId_cliente())) {
-            DB::table('clientes')->where('id_cliente', '=', $this->getId_cliente())->delete();
-            $this->setResposta('excluido');
+            $vendas = DB::table('vendas')->where('cliente_id', '=', $this->getId_cliente())->count();
+            if ($vendas > 0) {
+                DB::table('clientes')->where('id_cliente', '=', $this->getId_cliente())->update([
+                    'status' => '0'
+                ]);
+                $this->setResposta('excluido');
+            } else {
+                DB::table('clientes')->where('id_cliente', '=', $this->getId_cliente())->delete();
+                $this->setResposta('excluido');
+            }
         }
     }
 }

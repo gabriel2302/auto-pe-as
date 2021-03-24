@@ -107,12 +107,12 @@
                             <h4 class="modal-title" id="myModalLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>\
                         </div>\
                         <div class="modal-body">\
-                            Você tem certeza que deseja ativar o produto ' + produto + '\
+                            Você tem certeza que deseja ativar o produto <b>' + produto + '</b>?\
                         </div>\
                         <div class="modal-footer">\
                             <div class="btn-group" role="group">\
-                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>\
-                                <button type="button" class="btn bg-success btn-wide btn-rounded" onclick="ativar(\'' + id_produto + '\')"><i class="fa fa-check"></i>Ativar</button>\
+                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>\
+                                <button type="button" class="btn bg-success btn-wide btn-rounded" onclick="ativar(\'' + id_produto + '\')"><i class="fa fa-check"></i> Ativar</button>\
                             </div>\
                             <!-- /.btn-group -->\
                         </div>\
@@ -174,12 +174,12 @@
                             <h4 class="modal-title" id="myModalLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>\
                         </div>\
                         <div class="modal-body">\
-                            Você tem certeza que deseja excluir o produto ' + produto + '\
+                            Você tem certeza que deseja inativar/excluir o produto <b>' + produto + '</b>?\
                         </div>\
                         <div class="modal-footer">\
                             <div class="btn-group" role="group">\
-                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>\
-                                <button type="button" class="btn bg-danger btn-wide btn-rounded" onclick="excluir(\'' + id_produto + '\')"><i class="fa fa-trash"></i>Excluir</button>\
+                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>\
+                                <button type="button" class="btn bg-danger btn-wide btn-rounded" onclick="excluir(\'' + id_produto + '\')"><i class="fa fa-trash"></i> Inativar/Excluir</button>\
                             </div>\
                             <!-- /.btn-group -->\
                         </div>\
@@ -215,7 +215,7 @@
 
                 if (response.resposta == 'excluido') {
                   modal_texto.innerHTML = '';
-                  modal_texto.innerHTML = 'Produto excluído com sucesso!';
+                  modal_texto.innerHTML = 'Produto inativado/excluído com sucesso!';
                   $('#modal-resposta').modal({
                     show: true
                   });

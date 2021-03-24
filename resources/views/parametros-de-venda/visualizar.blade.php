@@ -44,8 +44,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
-                                    <a href="#" class="btn bg-danger btn-wide" data-toggle="modal" data-target="#modal-limpar1"><i class="fa fa-eraser"></i>Limpar</a>
-                                    <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar" onclick="alterarParametro('form-comissao')"><i class="fa fa-arrow-right"></i>Alterar</button>
+                                    <a href="#" class="btn bg-danger btn-wide" data-toggle="modal" data-target="#modal-limpar1"><i class="fa fa-eraser"></i> Limpar</a>
+                                    <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar" onclick="alterarParametro('form-comissao')"><i class="fa fa-arrow-right"></i> Alterar</button>
                                 </div>
                             </div>
                         </div>
@@ -92,8 +92,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
-                                    <a href="#" class="btn bg-danger btn-wide" data-toggle="modal" data-target="#modal-limpar2"><i class="fa fa-eraser"></i>Limpar</a>
-                                    <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar" onclick="alterarParametro('form-desconto')"><i class="fa fa-arrow-right"></i>Alterar</button>
+                                    <a href="#" class="btn bg-danger btn-wide" data-toggle="modal" data-target="#modal-limpar2"><i class="fa fa-eraser"></i> Limpar</a>
+                                    <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar" onclick="alterarParametro('form-desconto')"><i class="fa fa-arrow-right"></i> Alterar</button>
                                 </div>
                             </div>
                         </div>
@@ -140,8 +140,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
-                                    <a href="#" class="btn bg-danger btn-wide" data-toggle="modal" data-target="#modal-limpar3"><i class="fa fa-eraser"></i>Limpar</a>
-                                    <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar" onclick="alterarParametro('form-credito')"><i class="fa fa-arrow-right"></i>Alterar</button>
+                                    <a href="#" class="btn bg-danger btn-wide" data-toggle="modal" data-target="#modal-limpar3"><i class="fa fa-eraser"></i> Limpar</a>
+                                    <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar" onclick="alterarParametro('form-credito')"><i class="fa fa-arrow-right"></i> Alterar</button>
                                 </div>
                             </div>
                         </div>
@@ -184,8 +184,8 @@
             </div>
             <div class="modal-footer">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
-                    <a href="#" onclick="document.getElementById('comissao').value=''" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i>Limpar</a>
+                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>
+                    <a href="#" onclick="document.getElementById('comissao').value=''" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i> Limpar</a>
                 </div>
                 <!-- /.btn-group -->
             </div>
@@ -204,8 +204,8 @@
             </div>
             <div class="modal-footer">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
-                    <a href="#" onclick="document.getElementById('desconto').value=''" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i>Limpar</a>
+                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>
+                    <a href="#" onclick="document.getElementById('desconto').value=''" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i> Limpar</a>
                 </div>
                 <!-- /.btn-group -->
             </div>
@@ -224,8 +224,8 @@
             </div>
             <div class="modal-footer">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
-                    <a href="#" onclick="document.getElementById('limite').value=''" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i>Limpar</a>
+                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>
+                    <a href="#" onclick="document.getElementById('limite').value=''" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i> Limpar</a>
                 </div>
                 <!-- /.btn-group -->
             </div>

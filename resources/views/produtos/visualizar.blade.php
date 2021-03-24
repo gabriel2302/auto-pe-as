@@ -20,16 +20,14 @@
                 </div>
             </div>
             <div class="panel-body">
-                @foreach($dados_produtos as $produto)
+                @foreach($produtos as $produto)
                 <form class="p-20" action="javascript:void(0)" method="POST" id="form-cadastrar-cliente">
                     @csrf
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <input type="hidden" id="url_form" name="url_form" value="{{route('clientes-cadastrar')}}">
                     <div id="campos-cadastro">
-                        <h5 class="underline mt-n">Informações pessoais</h5>
-
                         <div class="row">
-                            <div class="col-md-16">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="nome">Nome</label>
                                     <input type="text" class="form-control" value="{{$produto->nome}}" id="nome" name="nome" readonly>
@@ -68,7 +66,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="cep">Descrição</label>
-                                    <textarea class="form-control" cols="1" rows="2">{{$produto->descricao}}</textarea>
+                                    <textarea class="form-control" cols="1" rows="3" disabled>{{$produto->descricao}}</textarea>
                                 </div>
                             </div>
 
@@ -76,8 +74,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
-                                    <a href="/produtos" class="btn bg-black btn-wide"><i class="fa fa-arrow-left"></i>Voltar</a href="/produtos">
-                                    <a href="/produtos/alterar?produto={{$produto->id_produto}}&alterar" type="button" class="btn btn-primary btn-wide" id="btn-cadastrar"><i class="fa fa-arrow-right"></i>Alterar</a>
+                                    <a href="/produtos" class="btn bg-black btn-wide"><i class="fa fa-arrow-left"></i> Voltar</a>
+                                    <a href="/produtos/alterar?produto={{$produto->id_produto}}&alterar" class="btn btn-primary btn-wide"><i class="fa fa-arrow-right"></i> Alterar</a>
                                 </div>
                             </div>
                         </div>

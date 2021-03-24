@@ -27,7 +27,7 @@ class usuariosController extends Controller
         $usuarios->setCidade($_POST['cidade']);
         $usuarios->setEstado($_POST['estado']);
         $usuarios->setFuncao_id($_POST['funcao_id']);
-        $usuarios->setSenha($_POST['senha']);
+        !empty($_POST['senha'])?$usuarios->setSenha(password_hash($_POST['senha'], PASSWORD_DEFAULT)):$usuarios->setSenha(NULL);
         $usuarios->setStatus('1');
         $usuarios->alterar();
         $resposta = array('resposta' => $usuarios->getResposta());
@@ -37,7 +37,7 @@ class usuariosController extends Controller
     public function ativar()
     {
         $usuarios = new usuariosModel();
-        $usuarios->setId_usuarios($_POST['id_usuarios']);
+        $usuarios->setId_usuario($_POST['id_usuarios']);
         $usuarios->ativar();
         $resposta = array('resposta' => $usuarios->getResposta());
         return Response()->json($resposta);
@@ -77,7 +77,7 @@ class usuariosController extends Controller
     public function excluir()
     {
         $usuarios = new usuariosModel();
-        $usuarios->setId_usuarios($_POST['id_usuarios']);
+        $usuarios->setId_usuario($_POST['id_usuarios']);
         $usuarios->excluir();
         $resposta = array('resposta' => $usuarios->getResposta());
         return Response()->json($resposta);

@@ -112,9 +112,9 @@
           $(document).ready(function() {
             $('#example').DataTable({
               dom: "<'row'<'col-md-12 text-right pb-2'B>>\
-      <'row'<'col-md-6'l><'col-md-6'f>>\
-      <'row'<'col-md-12'rt>>\
-      <'row'<'col-md-6'i><'col-md-6'p>>",
+              <'row'<'col-md-6'l><'col-md-6'f>>\
+              <'row'<'col-md-12'rt>>\
+              <'row'<'col-md-6'i><'col-md-6'p>>",
               buttons: [
                 {
                   extend: 'print',
@@ -148,12 +148,12 @@
                             <h4 class="modal-title" id="myModalLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>\
                         </div>\
                         <div class="modal-body">\
-                            Você tem certeza que deseja ativar o cliente ' + cliente + '\
+                            Você tem certeza que deseja ativar o cliente <b>' + cliente + '</b>?\
                         </div>\
                         <div class="modal-footer">\
                             <div class="btn-group" role="group">\
-                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>\
-                                <button type="button" class="btn bg-success btn-wide btn-rounded" onclick="ativar(\'' + id_cliente + '\')"><i class="fa fa-check"></i>Ativar</button>\
+                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>\
+                                <button type="button" class="btn bg-success btn-wide btn-rounded" onclick="ativar(\'' + id_cliente + '\')"><i class="fa fa-check"></i> Ativar</button>\
                             </div>\
                             <!-- /.btn-group -->\
                         </div>\
@@ -215,12 +215,12 @@
                             <h4 class="modal-title" id="myModalLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>\
                         </div>\
                         <div class="modal-body">\
-                            Você tem certeza que deseja excluir o cliente ' + cliente + '\
+                            Você tem certeza que deseja inativar/excluir o cliente <b>' + cliente + '</b>?\
                         </div>\
                         <div class="modal-footer">\
                             <div class="btn-group" role="group">\
-                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>\
-                                <button type="button" class="btn bg-danger btn-wide btn-rounded" onclick="excluir(\'' + id_cliente + '\')"><i class="fa fa-trash"></i>Excluir</button>\
+                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>\
+                                <button type="button" class="btn bg-danger btn-wide btn-rounded" onclick="excluir(\'' + id_cliente + '\')"><i class="fa fa-trash"></i> Inativar/Excluir</button>\
                             </div>\
                             <!-- /.btn-group -->\
                         </div>\
@@ -256,7 +256,7 @@
 
                 if (response.resposta == 'excluido') {
                   modal_texto.innerHTML = '';
-                  modal_texto.innerHTML = 'Cliente excluído com sucesso!';
+                  modal_texto.innerHTML = 'Cliente inativado/excluído com sucesso!';
                   $('#modal-resposta').modal({
                     show: true
                   });

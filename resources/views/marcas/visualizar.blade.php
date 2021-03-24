@@ -38,8 +38,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
-                                    <a href="/marcas" class="btn bg-black btn-wide"><i class="fa fa-arrow-left"></i>Voltar</a href="/marcas">
-                                    <a href="/marcas/alterar?marca={{$marca->id_marca}}&alterar" type="button" class="btn btn-primary btn-wide" id="btn-cadastrar"><i class="fa fa-arrow-right"></i>Alterar</a>
+                                    <a href="/marcas" class="btn bg-black btn-wide"><i class="fa fa-arrow-left"></i> Voltar</a>
+                                    <a href="/marcas/alterar?marca={{$marca->id_marca}}&alterar" type="button" class="btn btn-primary btn-wide" id="btn-cadastrar"><i class="fa fa-arrow-right"></i> Alterar</a>
                                 </div>
                             </div>
                         </div>

@@ -74,9 +74,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
-                                    <a href="#" class="btn bg-black btn-wide" data-toggle="modal" data-target="#modal-voltar"><i class="fa fa-arrow-left"></i>Voltar</a>
-                                    <a href="#" class="btn bg-danger btn-wide" data-toggle="modal" data-target="#modal-limpar"><i class="fa fa-eraser"></i>Limpar</a>
-                                    <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar"><i class="fa fa-arrow-right"></i>Cadastrar</button>
+                                    <a href="#" class="btn bg-black btn-wide" data-toggle="modal" data-target="#modal-voltar"><i class="fa fa-arrow-left"></i> Voltar</a>
+                                    <a href="#" class="btn bg-danger btn-wide" data-toggle="modal" data-target="#modal-limpar"><i class="fa fa-eraser"></i> Limpar</a>
+                                    <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar"><i class="fa fa-arrow-right"></i> Cadastrar</button>
                                 </div>
                             </div>
                         </div>
@@ -95,12 +95,12 @@
                 <h4 class="modal-title" id="modalVoltarLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>
             </div>
             <div class="modal-body">
-                <p>Você tem certeza que deseja retornar para a página de produtos?</p>
+                <p>Você tem certeza que deseja retornar para a página de produtos sem salvar?</p>
             </div>
             <div class="modal-footer">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
-                    <a href="/produtos" class="btn btn-success btn-wide btn-rounded"><i class="fa fa-arrow-left"></i>Voltar</a>
+                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>
+                    <a href="/produtos" class="btn btn-success btn-wide btn-rounded"><i class="fa fa-arrow-left"></i> Voltar</a>
                 </div>
                 <!-- /.btn-group -->
             </div>
@@ -119,7 +119,7 @@
             </div>
             <div class="modal-footer">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
+                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>
                 </div>
                 <!-- /.btn-group -->
             </div>
@@ -138,8 +138,8 @@
             </div>
             <div class="modal-footer">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
-                    <a href="#" onclick="document.getElementById('form-cadastrar-produto').reset()" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i>Limpar</a>
+                    <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>
+                    <a href="#" onclick="document.getElementById('form-cadastrar-produto').reset()" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i> Limpar</a>
                 </div>
                 <!-- /.btn-group -->
             </div>
@@ -157,7 +157,7 @@
                 }
             });
 
-            $('#btn-cadastrar').html('Cadastrando...');
+            $('#btn-cadastrar').html('<i class="fa fa-arrow-right"></i> Cadastrando...');
             var url_atual = document.getElementById('url_form').value;
             var modal_texto = document.getElementById('modal-resposta-texto');
 
@@ -174,7 +174,7 @@
                             show: true
                         });
                         document.getElementById("form-cadastrar-produto").reset();
-                        $('#btn-cadastrar').html('Cadastrar');
+                        $('#btn-cadastrar').html('<i class="fa fa-arrow-right"></i> Cadastrar');
                         window.location.href = "/produtos";
                     } else {
                         if (response.resposta == 'vazio') {
@@ -183,7 +183,7 @@
                             $('#modal-resposta').modal({
                                 show: true
                             });
-                            $('#btn-cadastrar').html('Cadastrar');
+                            $('#btn-cadastrar').html('<i class="fa fa-arrow-right"></i> Cadastrar');
                         }
                     }
                 },
@@ -193,7 +193,7 @@
                     $('#modal-resposta').modal({
                         show: true
                     });
-                    $('#btn-cadastrar').html('Cadastrar');
+                    $('#btn-cadastrar').html('<i class="fa fa-arrow-right"></i> Cadastrar');
                 }
             });
         });

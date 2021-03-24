@@ -65,9 +65,13 @@
               <td style="display: flex; justify-content: space-between">
                 <a class="btn btn-primary" href="/usuarios/alterar?usuarios={{$usuario->id_usuario}}&alterar" title="Alterar"><i class="fa fa-pencil" style="margin: 0"></i></a>
                 <a class="btn bg-black" href="/usuarios/visualizar?usuarios={{$usuario->id_usuario}}&visualizar" title="Visualizar"><i class="fa fa-eye" style="margin: 0"></i></a>
-                <a class="btn btn-danger" title="Excluir/Inativar"><i class="fa fa-trash" style="margin: 0"></i></a>
                 @csrf
                 <meta name="csrf-token" content="{{ csrf_token() }}">
+                @if($usuario->status=='1')
+                <a class="btn btn-danger text-center" onclick="modal_excluir('{{$usuario->nome}}', '{{$usuario->id_usuario}}')" title="Excluir/Inativar"><i class="fa fa-trash"></i></a>
+                @else
+                <a class="btn btn-success" onclick="modal_ativar('{{$usuario->nome}}', '{{$usuario->id_usuario}}')" title="Ativar"><i class="fa fa-check"></i></a>
+                @endif
               </td>
             </tr>
             @endforeach
@@ -88,7 +92,7 @@
               </div>
               <div class="modal-footer">
                 <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
+                  <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>
                 </div>
                 <!-- /.btn-group -->
               </div>
@@ -113,12 +117,12 @@
                             <h4 class="modal-title" id="myModalLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>\
                         </div>\
                         <div class="modal-body">\
-                            Você tem certeza que deseja ativar o cliente ' + cliente + '\
+                            Você tem certeza que deseja ativar o usuário <b>' + cliente + '</b>?\
                         </div>\
                         <div class="modal-footer">\
                             <div class="btn-group" role="group">\
-                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>\
-                                <button type="button" class="btn bg-success btn-wide btn-rounded" onclick="ativar(\'' + id_cliente + '\')"><i class="fa fa-check"></i>Ativar</button>\
+                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>\
+                                <button type="button" class="btn bg-success btn-wide btn-rounded" onclick="ativar(\'' + id_cliente + '\')"><i class="fa fa-check"></i> Ativar</button>\
                             </div>\
                             <!-- /.btn-group -->\
                         </div>\
@@ -144,20 +148,20 @@
             });
 
             $.ajax({
-              url: "/clientes/ativar",
+              url: "/usuarios/ativar",
               method: 'post',
               data: {
-                'id_cliente': id_cliente,
+                'id_usuarios': id_cliente,
               },
               success: function(response) {
 
                 if (response.resposta == 'ativado') {
                   modal_texto.innerHTML = '';
-                  modal_texto.innerHTML = 'Cliente ativado com sucesso!';
+                  modal_texto.innerHTML = 'Usuário ativado com sucesso!';
                   $('#modal-resposta').modal({
                     show: true
                   });
-                  window.location.href = "/clientes";
+                  window.location.href = "/usuarios";
                 }
               },
               error: function(response) {
@@ -180,12 +184,12 @@
                             <h4 class="modal-title" id="myModalLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>\
                         </div>\
                         <div class="modal-body">\
-                            Você tem certeza que deseja excluir o cliente ' + cliente + '\
+                            Você tem certeza que deseja inativar/excluir o usuário <b>' + cliente + '</b>?\
                         </div>\
                         <div class="modal-footer">\
                             <div class="btn-group" role="group">\
-                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>\
-                                <button type="button" class="btn bg-danger btn-wide btn-rounded" onclick="excluir(\'' + id_cliente + '\')"><i class="fa fa-trash"></i>Excluir</button>\
+                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>\
+                                <button type="button" class="btn bg-danger btn-wide btn-rounded" onclick="excluir(\'' + id_cliente + '\')"><i class="fa fa-trash"></i> Inativar/Excluir</button>\
                             </div>\
                             <!-- /.btn-group -->\
                         </div>\
@@ -212,20 +216,20 @@
             });
 
             $.ajax({
-              url: "/clientes/excluir",
+              url: "/usuarios/excluir",
               method: 'post',
               data: {
-                'id_cliente': id_cliente,
+                'id_usuarios': id_cliente,
               },
               success: function(response) {
 
                 if (response.resposta == 'excluido') {
                   modal_texto.innerHTML = '';
-                  modal_texto.innerHTML = 'Cliente excluído com sucesso!';
+                  modal_texto.innerHTML = 'Usuário inativado/excluído com sucesso!';
                   $('#modal-resposta').modal({
                     show: true
                   });
-                  window.location.href = "/clientes";
+                  window.location.href = "/usuarios";
                 }
               },
               error: function(response) {

@@ -156,8 +156,16 @@ class parametrosModel extends Model
     public function excluirMarca()
     {
         if (!empty($this->getId_marca())) {
-            DB::table('marca')->where('id_marca', '=', $this->getId_marca())->delete();
-            $this->setResposta('excluido');
+            $produtos = DB::table('produtos')->where('marca_id', '=', $this->getId_marca())->count();
+            if ($produtos > 0) {
+                DB::table('marca')->where('id_marca', '=', $this->getId_marca())->update([
+                    'status' => '0'
+                ]);
+                $this->setResposta('excluido');
+            } else {
+                DB::table('marca')->where('id_marca', '=', $this->getId_marca())->delete();
+                $this->setResposta('excluido');
+            }
         }
     }
 
@@ -216,8 +224,16 @@ class parametrosModel extends Model
     public function excluirCategoria()
     {
         if (!empty($this->getId_categoria())) {
-            DB::table('categoria')->where('id_categoria', '=', $this->getId_categoria())->delete();
-            $this->setResposta('excluido');
+            $produtos = DB::table('produtos')->where('categoria_id', '=', $this->getId_categoria())->count();
+            if ($produtos > 0) {
+                DB::table('categoria')->where('id_categoria', '=', $this->getId_categoria())->update([
+                    'status' => '0'
+                ]);
+                $this->setResposta('excluido');
+            } else {
+                DB::table('categoria')->where('id_categoria', '=', $this->getId_categoria())->delete();
+                $this->setResposta('excluido');
+            }
         }
     }
 
@@ -260,9 +276,22 @@ class parametrosModel extends Model
         }
     }
 
+    //Parâmetros
+
     public function alterarParametro()
     {
         if (!empty($this->getValor())) {
+            if ($this->getId_parametro() == '3') {
+                $credito_atual = DB::table('parametros_de_venda')->where('id_parametro', '=', $this->getId_parametro())->select('valor')->first();
+                $credito_atual = $this->getValor() - $credito_atual->valor;
+                $clientes = DB::table('clientes')->get();
+                foreach ($clientes as $cliente) {
+                    DB::table('clientes')->where('id_cliente', '=', $cliente->id_cliente)->update([
+                        'credito' => $credito_atual + $cliente->credito
+                    ]);
+                }
+            }
+
             DB::table('parametros_de_venda')->where('id_parametro', '=', $this->getId_parametro())->update([
                 'valor' => $this->getValor(),
             ]);

@@ -76,7 +76,7 @@
               </div>
               <div class="modal-footer">
                 <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>
+                  <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>
                 </div>
                 <!-- /.btn-group -->
               </div>
@@ -101,12 +101,12 @@
                             <h4 class="modal-title" id="myModalLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>\
                         </div>\
                         <div class="modal-body">\
-                            Você tem certeza que deseja ativar a marca ' + marca + '\
+                            Você tem certeza que deseja ativar a marca <b>' + marca + '</b>?\
                         </div>\
                         <div class="modal-footer">\
                             <div class="btn-group" role="group">\
-                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>\
-                                <button type="button" class="btn bg-success btn-wide btn-rounded" onclick="ativar(\'' + id_marca + '\')"><i class="fa fa-check"></i>Ativar</button>\
+                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>\
+                                <button type="button" class="btn bg-success btn-wide btn-rounded" onclick="ativar(\'' + id_marca + '\')"><i class="fa fa-check"></i> Ativar</button>\
                             </div>\
                             <!-- /.btn-group -->\
                         </div>\
@@ -168,12 +168,12 @@
                             <h4 class="modal-title" id="myModalLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>\
                         </div>\
                         <div class="modal-body">\
-                            Você tem certeza que deseja excluir a marca ' + marca + '\
+                            Você tem certeza que deseja inativar/excluir a marca <b>' + marca + '</b>?\
                         </div>\
                         <div class="modal-footer">\
                             <div class="btn-group" role="group">\
-                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i>Fechar</button>\
-                                <button type="button" class="btn bg-danger btn-wide btn-rounded" onclick="excluir(\'' + id_marca + '\')"><i class="fa fa-trash"></i>Excluir</button>\
+                                <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>\
+                                <button type="button" class="btn bg-danger btn-wide btn-rounded" onclick="excluir(\'' + id_marca + '\')"><i class="fa fa-trash"></i> Inativar/Excluir</button>\
                             </div>\
                             <!-- /.btn-group -->\
                         </div>\
@@ -209,7 +209,7 @@
 
                 if (response.resposta == 'excluido') {
                   modal_texto.innerHTML = '';
-                  modal_texto.innerHTML = 'Marca excluída com sucesso!';
+                  modal_texto.innerHTML = 'Marca inativada/excluída com sucesso!';
                   $('#modal-resposta').modal({
                     show: true
                   });

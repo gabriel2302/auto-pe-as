@@ -143,9 +143,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
-                                    <a href="/usuarios" class="btn bg-black btn-wide"><i class="fa fa-arrow-left"></i>Voltar</a>
+                                    <a href="/usuarios" class="btn bg-black btn-wide"><i class="fa fa-arrow-left"></i> Voltar</a>
                                     <a href="/usuarios/alterar?usuarios={{$usuario->id_usuario}}&alterar" class="btn btn-primary btn-wide" id="btn-cadastrar">
-                                        <i class="fa fa-arrow-right"></i>Alterar
+                                        <i class="fa fa-arrow-right"></i> Alterar
                                     </a>
                                 </div>
                             </div>
