@@ -255,9 +255,10 @@ class usuariosModel extends Model
         if (!empty($this->getCpf())) {
             if (strlen($this->getCpf()) <= 14) {
                 if (valida_cpf($this->getCpf())) {
-                    if (!empty($this->getNome()) && !empty($this->getCpf()) && !empty($this->getCep()) && !empty($this->getEndereco()) && !empty($this->getNumero()) && !empty($this->getBairro()) && !empty($this->getCidade()) && !empty($this->getEstado())) {
-                        $verifica_usuario = DB::table('usuarios')->where('cpf', '=', $_POST['cpf'])->select('id_usuario')->count();
-                        if ($verifica_usuario <= 0) {
+                    if (!empty($this->getNome()) && !empty($this->getCpf()) && !empty($this->getEmail()) && !empty($this->getSenha()) && !empty($this->getFuncao_id()) && !empty($this->getCep()) && !empty($this->getEndereco()) && !empty($this->getNumero()) && !empty($this->getBairro()) && !empty($this->getCidade()) && !empty($this->getEstado())) {
+                        $verifica_usuario = DB::table('usuarios')->where('cpf', '=', $this->getCpf())->select('id_usuario')->count();
+                        $verifica_usuario2 = DB::table('usuarios')->where('email', '=', $this->getEmail())->select('id_usuario')->count();
+                        if ($verifica_usuario <= 0 && $verifica_usuario2 <= 0) {
                             DB::table('usuarios')->insert([
                                 'nome' => $this->getNome(),
                                 'cpf' => $this->getCpf(),
@@ -299,48 +300,53 @@ class usuariosModel extends Model
         if (!empty($this->getCpf())) {
             if (strlen($this->getCpf()) <= 14) {
                 if (valida_cpf($this->getCpf())) {
-                    if (!empty($this->getNome()) && !empty($this->getCpf()) && !empty($this->getCep()) && !empty($this->getEndereco()) && !empty($this->getNumero()) && !empty($this->getBairro()) && !empty($this->getCidade()) && !empty($this->getEstado())) {
-                        $verifica_usuario = DB::table('usuarios')->select('id_usuario')->where('cpf', '=', $_POST['cpf']);
+                    if (!empty($this->getId_usuario()) && !empty($this->getNome()) && !empty($this->getCpf()) && !empty($this->getEmail()) && !empty($this->getFuncao_id()) && !empty($this->getCep()) && !empty($this->getEndereco()) && !empty($this->getNumero()) && !empty($this->getBairro()) && !empty($this->getCidade()) && !empty($this->getEstado())) {
+                        $verifica_usuario = DB::table('usuarios')->select('id_usuario')->where('cpf', '=', $this->getCpf());
+                        $verifica_usuario2 = DB::table('usuarios')->select('id_usuario')->where('email', '=', $this->getEmail());
                         if ($verifica_usuario->get()->contains('id_usuario', $this->getId_usuario()) || $verifica_usuario->count() == 0) {
-                            if ($this->getSenha() != NULL) {
-                                DB::table('usuarios')->where('id_usuario', '=', $this->getId_usuario())->update([
-                                    'nome' => $this->getNome(),
-                                    'cpf' => $this->getCpf(),
-                                    'telefone' => $this->getTelefone(),
-                                    'celular' => $this->getCelular(),
-                                    'whatsapp' => $this->getWhatsapp(),
-                                    'email' => $this->getEmail(),
-                                    'cep' => $this->getCep(),
-                                    'endereco' => $this->getEndereco(),
-                                    'numero' => $this->getNumero(),
-                                    'complemento' => $this->getComplemento(),
-                                    'bairro' => $this->getBairro(),
-                                    'cidade' => $this->getCidade(),
-                                    'estado' => $this->getEstado(),
-                                    'funcao_id' => $this->getFuncao_id(),
-                                    'senha' => $this->getSenha(),
-                                    'status' => $this->getStatus(),
-                                ]);
+                            if ($verifica_usuario2->get()->contains('id_usuario', $this->getId_usuario()) || $verifica_usuario2->count() == 0) {
+                                if ($this->getSenha() != NULL) {
+                                    DB::table('usuarios')->where('id_usuario', '=', $this->getId_usuario())->update([
+                                        'nome' => $this->getNome(),
+                                        'cpf' => $this->getCpf(),
+                                        'telefone' => $this->getTelefone(),
+                                        'celular' => $this->getCelular(),
+                                        'whatsapp' => $this->getWhatsapp(),
+                                        'email' => $this->getEmail(),
+                                        'cep' => $this->getCep(),
+                                        'endereco' => $this->getEndereco(),
+                                        'numero' => $this->getNumero(),
+                                        'complemento' => $this->getComplemento(),
+                                        'bairro' => $this->getBairro(),
+                                        'cidade' => $this->getCidade(),
+                                        'estado' => $this->getEstado(),
+                                        'funcao_id' => $this->getFuncao_id(),
+                                        'senha' => $this->getSenha(),
+                                        'status' => $this->getStatus(),
+                                    ]);
+                                } else {
+                                    DB::table('usuarios')->where('id_usuario', '=', $this->getId_usuario())->update([
+                                        'nome' => $this->getNome(),
+                                        'cpf' => $this->getCpf(),
+                                        'telefone' => $this->getTelefone(),
+                                        'celular' => $this->getCelular(),
+                                        'whatsapp' => $this->getWhatsapp(),
+                                        'email' => $this->getEmail(),
+                                        'cep' => $this->getCep(),
+                                        'endereco' => $this->getEndereco(),
+                                        'numero' => $this->getNumero(),
+                                        'complemento' => $this->getComplemento(),
+                                        'bairro' => $this->getBairro(),
+                                        'cidade' => $this->getCidade(),
+                                        'estado' => $this->getEstado(),
+                                        'funcao_id' => $this->getFuncao_id(),
+                                        'status' => $this->getStatus(),
+                                    ]);
+                                }
+                                $this->setResposta('alterado');
                             } else {
-                                DB::table('usuarios')->where('id_usuario', '=', $this->getId_usuario())->update([
-                                    'nome' => $this->getNome(),
-                                    'cpf' => $this->getCpf(),
-                                    'telefone' => $this->getTelefone(),
-                                    'celular' => $this->getCelular(),
-                                    'whatsapp' => $this->getWhatsapp(),
-                                    'email' => $this->getEmail(),
-                                    'cep' => $this->getCep(),
-                                    'endereco' => $this->getEndereco(),
-                                    'numero' => $this->getNumero(),
-                                    'complemento' => $this->getComplemento(),
-                                    'bairro' => $this->getBairro(),
-                                    'cidade' => $this->getCidade(),
-                                    'estado' => $this->getEstado(),
-                                    'funcao_id' => $this->getFuncao_id(),
-                                    'status' => $this->getStatus(),
-                                ]);
+                                $this->setResposta('usuario_cadastrado');
                             }
-                            $this->setResposta('alterado');
                         } else {
                             $this->setResposta('usuario_cadastrado');
                         }

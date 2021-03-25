@@ -180,8 +180,8 @@ Route::middleware(['autenticacao'])->group(function () {
     Route::get('/vendas', [vendasController::class, 'buscar'])->name('vendas');
 
     Route::get('/vendas/efetuar', function () {
-        $produtos = DB::table('produtos')->where('status', '=', '1')->where('quantidade', '>', '0')->get();
-        $clientes = DB::table('clientes')->where('status', '=', '1')->get();
+        $produtos = DB::table('produtos')->where('status', '=', '1')->where('quantidade', '>', '0')->orderBy('nome')->get();
+        $clientes = DB::table('clientes')->where('status', '=', '1')->orderBy('razao_social')->get();
         $desconto = DB::table('parametros_de_venda')->where('id_parametro', '=', '2')->first();
         return view('vendas/cadastrar', compact('produtos','clientes', 'desconto'));
     });
@@ -193,6 +193,8 @@ Route::middleware(['autenticacao'])->group(function () {
     Route::post('/vendas/finalizar', [vendasController::class, 'finalizar'])->name('vendas-finalizar');
 
     Route::get('/vendas/visualizar', [vendasController::class, 'visualizar'])->name('vendas-visualizar');
+
+    Route::get('/vendas/finalizar', [vendasController::class, 'finalizarVisualizar'])->name('vendas-finalizar-visualizar');
 
     Route::post('/vendas/excluir', [vendasController::class, 'excluir'])->name('vendas-excluir');
 

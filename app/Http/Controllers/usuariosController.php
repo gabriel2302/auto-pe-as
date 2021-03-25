@@ -28,7 +28,7 @@ class usuariosController extends Controller
         $usuarios->setEstado($_POST['estado']);
         $usuarios->setFuncao_id($_POST['funcao_id']);
         !empty($_POST['senha'])?$usuarios->setSenha(password_hash($_POST['senha'], PASSWORD_DEFAULT)):$usuarios->setSenha(NULL);
-        $usuarios->setStatus('1');
+        $usuarios->setStatus($_POST['status']);
         $usuarios->alterar();
         $resposta = array('resposta' => $usuarios->getResposta());
         return Response()->json($resposta);

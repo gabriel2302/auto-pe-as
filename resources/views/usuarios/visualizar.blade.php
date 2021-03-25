@@ -30,7 +30,7 @@
                         <h5 class="underline mt-n">Informações pessoais</h5>
 
                         <div class="row">
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="nome">Nome </label>
                                     <input disabled type="text" class="form-control" id="nome" name="nome" value="{{$usuario->nome}}">
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="funcao">Função </label>
                                     <select class="form-control" id="funcao_id" name="funcao_id" disabled>
@@ -58,10 +58,19 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-10">
                                 <div class="form-group">
                                     <label for="email">E-mail</label>
                                     <input disabled type="email" class="form-control" id="email" name="email" value="{{$usuario->email}}">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select class="form-control" name="status" id="status" disabled>
+                                    <option value="1" {{$usuario->status=='1'?'selected':''}}>Ativo</option>
+                                    <option value="0" {{$usuario->status=='0'?'selected':''}}>Inativo</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
