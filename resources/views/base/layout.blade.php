@@ -156,7 +156,9 @@
                                 <li class="has-children">
                                     <a href="#"><i class="fa fa-money" aria-hidden="true"></i><span>Vendas</span><i class="fa fa-angle-right arrow"></i></a>
                                     <ul class="child-nav">
+                                        @if(session('usuario_funcao_id')=='1' || session('usuario_funcao_id')=='2')
                                         <li><a href="/vendas/efetuar"><i class="fa fa-pencil"></i> <span>Efetuar </span></a></li>
+                                        @endif
                                         <li><a href="/vendas"><i class="fa fa-list"></i> <span>Visualizar </span></a></li>
                                     </ul>
                                 </li>

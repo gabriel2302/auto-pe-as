@@ -125,7 +125,7 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="credito_disponivel">Crédito disponível</label>
-                            <input type="text" class="form-control" id="credito_disponivel" name="credito_disponivel" value="R$ {{($cliente->credito)-($cliente->credito_utilizado)}}" readonly>
+                            <input type="text" class="form-control" id="credito_disponivel" name="credito_disponivel" value="R$ {{$cliente->credito}}" readonly>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -256,7 +256,7 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="credito_disponivel">Crédito disponível</label>
-                            <input type="text" class="form-control" id="credito_disponivel" name="credito_disponivel" value="R$ {{($cliente->credito)-($cliente->credito_utilizado)}}" readonly>
+                            <input type="text" class="form-control" id="credito_disponivel" name="credito_disponivel" value="R$ {{$cliente->credito}}" readonly>
                         </div>
                     </div>
                     <div class="col-md-2">

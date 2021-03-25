@@ -28,7 +28,7 @@ class vendasController extends Controller
 
     public function buscar()
     {
-        $vendas = DB::table('vendas')->get();
+        $vendas = DB::table('vendas')->orderByDesc('data_venda')->get();
         $clientes = DB::table('clientes')->get();
         return view('vendas/vendas', compact('vendas', 'clientes'));
     }
@@ -36,14 +36,13 @@ class vendasController extends Controller
     public function visualizar()
     {
         if (isset($_GET['venda']) && !empty($_GET['venda'])) {
-            $valida_venda = DB::table('vendas')->where('id_venda', '=', $_GET['venda'])->count();
+            $valida_venda = DB::table('vendas')->where('id_venda', '=', $_GET['venda'])->where('status', '<=', '1')->count();
             if ($valida_venda != 0) {
-                $produtos = DB::table('produtos')->where('status', '=', '1')->get();
-                $clientes = DB::table('clientes')->where('status', '=', '1')->get();
-                $desconto = DB::table('parametros_de_venda')->where('id_parametro', '=', '2')->first();
-                $dados_vendas = DB::table('vendas')->where('id_venda', '=', $_GET['venda'])->get();
-                $dados_vendas_produtos = DB::table('itens_venda')->where('venda_id', '=', $_GET['venda'])->get();
-                return view('vendas/visualizar', compact('dados_vendas', 'dados_vendas_produtos', 'produtos', 'clientes', 'desconto'));
+                $produtos = DB::table('produtos')->get();
+                $clientes = DB::table('clientes')->get();
+                $vendas = DB::table('vendas')->where('id_venda', '=', $_GET['venda'])->get();
+                $vendas_produtos = DB::table('itens_venda')->where('venda_id', '=', $_GET['venda'])->get();
+                return view('vendas/visualizar', compact('vendas', 'vendas_produtos', 'produtos', 'clientes'));
             } else {
                 return redirect()->route('vendas');
             }
@@ -52,7 +51,8 @@ class vendasController extends Controller
         }
     }
 
-    public function finalizarVisualizar(){
+    public function finalizarVisualizar()
+    {
         if (isset($_GET['venda']) && !empty($_GET['venda'])) {
             $valida_venda = DB::table('vendas')->where('id_venda', '=', $_GET['venda'])->where('status', '=', '2')->count();
             if ($valida_venda != 0) {
@@ -67,5 +67,24 @@ class vendasController extends Controller
         } else {
             return redirect()->route('vendas');
         }
+    }
+
+    public function finalizar()
+    {
+        $vendas = new vendasModel();
+        $vendas->setForma_pagamento($_POST['forma_pagamento']);
+        $vendas->setCliente_id($_POST['cliente_id']);
+        $vendas->setId_venda($_POST['id_venda']);
+        $vendas->finalizar();
+        $resposta = array('resposta' => $vendas->getResposta());
+        return Response()->json($resposta);
+    }
+
+    public function excluir(){
+        $vendas = new vendasModel();
+        $vendas->setId_venda($_POST['id_venda']);
+        $vendas->excluir();
+        $resposta = array('resposta' => $vendas->getResposta());
+        return Response()->json($resposta);
     }
 }

@@ -265,12 +265,12 @@
 \
             <div class="col-md-2">\
                 <label for="valor-unitario">Valor unitário</label>\
-                <input type="number" class="form-control" id="valor-unitario' + id_node + '" name="produto[' + id_node + '][valor-unitario]" readonly>\
+                <input type="number" class="form-control" id="valor-unitario' + id_node + '" name="produto[' + id_node + '][valor_unitario]" readonly>\
             </div>\
 \
             <div class="col-md-2">\
                 <label for="valor-total">Valor total</label>\
-                <input type="number" class="form-control valor-total" id="valor-total' + id_node + '" name="produto[' + id_node + '][valor-total]" readonly>\
+                <input type="number" class="form-control valor-total" id="valor-total' + id_node + '" name="produto[' + id_node + '][valor_total]" readonly>\
                 <input type="hidden" name="node_produto[]" value="' + id_node + '">\
             </div>\
 \

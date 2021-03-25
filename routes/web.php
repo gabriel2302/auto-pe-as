@@ -82,9 +82,9 @@ Route::middleware(['autenticacao'])->group(function () {
         Route::post('/produtos/excluir', [produtosController::class, 'excluir'])->name('produtos-excluir');
 
         Route::post('/produtos/ativar', [produtosController::class, 'ativar'])->name('produtos-ativar');
-        
+
         Route::get('/produtos/entrada', [produtosController::class, 'entrada'])->name('produtos-entrada');
-        
+
         Route::get('/produtos/cadastrar-entrada', function () {
             $produtos = DB::table('produtos')->where('status', '=', '1')->get();
             return view('produtos/cadastrar-entrada', compact('produtos'));
@@ -93,6 +93,16 @@ Route::middleware(['autenticacao'])->group(function () {
         Route::post('/produtos/cadastrar-entrada', [produtosController::class, 'entradaCadastrar'])->name('produtos-entrada-cadastrar');
 
         Route::get('/produtos/visualizar-entrada', [produtosController::class, 'entradaVisualizar'])->name('produtos-entrada-visualizar');
+
+        //Rotas Vendas
+        Route::get('/vendas/efetuar', function () {
+            $produtos = DB::table('produtos')->where('status', '=', '1')->where('quantidade', '>', '0')->orderBy('nome')->get();
+            $clientes = DB::table('clientes')->where('status', '=', '1')->orderBy('razao_social')->get();
+            $desconto = DB::table('parametros_de_venda')->where('id_parametro', '=', '2')->first();
+            return view('vendas/cadastrar', compact('produtos', 'clientes', 'desconto'));
+        });
+
+        Route::post('/vendas/efetuar', [vendasController::class, 'efetuar'])->name('vendas-efetuar');
     });
 
     Route::middleware(['admin'])->group(function () {
@@ -120,7 +130,7 @@ Route::middleware(['autenticacao'])->group(function () {
 
         Route::post('/usuarios/excluir', [usuariosController::class, 'excluir'])->name('usuarios-excluir');
 
-        Route::get('/usuarios/comissoes', function(){
+        Route::get('/usuarios/comissoes', function () {
             $vendas = DB::table('vendas')->where('status', '=', '1')->get();
             $usuarios = DB::table('usuarios')->get();
             return view('usuarios/comissoes', compact('vendas', 'usuarios'));
@@ -171,31 +181,27 @@ Route::middleware(['autenticacao'])->group(function () {
         Route::post('/parametros-de-venda', [parametrosController::class, 'alterarParametrosDeVenda']);
     });
 
-    Route::post('/produtos/info_produto', function(){
-        $info_produto = DB::table('produtos')->where('id_produto', '=', $_POST['id_produto'])->get();
-        $array_dados = compact('info_produto');
-        return json_encode($array_dados);
-    });
+    //Rotas Vendas
 
     Route::get('/vendas', [vendasController::class, 'buscar'])->name('vendas');
-
-    Route::get('/vendas/efetuar', function () {
-        $produtos = DB::table('produtos')->where('status', '=', '1')->where('quantidade', '>', '0')->orderBy('nome')->get();
-        $clientes = DB::table('clientes')->where('status', '=', '1')->orderBy('razao_social')->get();
-        $desconto = DB::table('parametros_de_venda')->where('id_parametro', '=', '2')->first();
-        return view('vendas/cadastrar', compact('produtos','clientes', 'desconto'));
-    });
-
-    Route::post('/vendas/efetuar', [vendasController::class, 'efetuar'])->name('vendas-efetuar');
-
-    Route::get('/vendas/finalizar', [vendasController::class, 'finalizarBuscar'])->name('vendas-finalizar');
-
-    Route::post('/vendas/finalizar', [vendasController::class, 'finalizar'])->name('vendas-finalizar');
 
     Route::get('/vendas/visualizar', [vendasController::class, 'visualizar'])->name('vendas-visualizar');
 
     Route::get('/vendas/finalizar', [vendasController::class, 'finalizarVisualizar'])->name('vendas-finalizar-visualizar');
 
+    Route::post('/vendas/finalizar', [vendasController::class, 'finalizar'])->name('vendas-finalizar');
+
     Route::post('/vendas/excluir', [vendasController::class, 'excluir'])->name('vendas-excluir');
 
+    Route::post('/produtos/info_produto', function () {
+        $info_produto = DB::table('produtos')->where('id_produto', '=', $_POST['id_produto'])->get();
+        $array_dados = compact('info_produto');
+        return json_encode($array_dados);
+    });
+
+    Route::post('/clientes/info_cliente', function () {
+        $clientes = DB::table('clientes')->where('id_cliente', '=', $_POST['id_cliente'])->get();
+        $array_dados = compact('clientes');
+        return json_encode($array_dados);
+    });
 });

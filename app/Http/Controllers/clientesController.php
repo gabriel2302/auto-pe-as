@@ -52,7 +52,7 @@ class clientesController extends Controller
 
     public function buscar()
     {
-        $clientes = DB::table('clientes')->get();
+        $clientes = DB::table('clientes')->orderBy('razao_social')->get();
         return view('clientes/clientes', compact('clientes'));
     }
 

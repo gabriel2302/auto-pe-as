@@ -188,16 +188,15 @@ class vendasModel extends Model
             if ($this->getNode_produto() != NULL) {
                 foreach ($this->getNode_produto() as $node) {
                     if ($this->getProdutos() == NULL) {
-                        $valida_produto += $valida_produto;
+                        $valida_produto = 1;
                     } else {
                         if (empty($this->getProdutos()[$node]['produto_id']) || empty($this->getProdutos()[$node]['quantidade']) || empty($this->getProdutos()[$node]['valor_unitario']) || empty($this->getProdutos()[$node]['valor_total'])) {
-                            $valida_produto += $valida_produto;
+                            $valida_produto = 1;
                         }
                     }
                 }
             } else {
-                $valida_produto += $valida_produto;
-                
+                $valida_produto = 1;
             }
             if ($valida_produto == 0) {
                 $porcentagem_comissao = DB::table('parametros_de_venda')->where('id_parametro', '=', '1')->select('valor')->first();
@@ -236,6 +235,77 @@ class vendasModel extends Model
             }
         } else {
             $this->setResposta('vazio');
+        }
+    }
+
+    public function finalizar()
+    {
+        if ($this->getForma_pagamento() == 'interno') {
+            $valor = DB::table('vendas')->where('id_venda', '=', $this->getId_venda())->first();
+            $credito = DB::table('clientes')->where('id_cliente', '=', $this->getCliente_id())->first();
+
+            DB::table('clientes')->where('id_cliente', '=', $this->getCliente_id())->update([
+                'credito' => ($credito->credito - $valor->valor_total),
+                'credito_utilizado' => ($credito->credito_utilizado + $valor->valor_total)
+            ]);
+
+            DB::table('vendas')->where('id_venda', '=', $this->getId_venda())->update([
+                'forma_pagamento' => $this->getForma_pagamento(),
+                'status' => '1'
+            ]);
+            $this->setResposta('cadastrado');
+        } else {
+            DB::table('vendas')->where('id_venda', '=', $this->getId_venda())->update([
+                'forma_pagamento' => $this->getForma_pagamento(),
+                'status' => '1'
+            ]);
+            $this->setResposta('cadastrado');
+        }
+    }
+
+    public function excluir()
+    {
+        $venda = DB::table('vendas')->where('id_venda', '=', $this->getId_venda())->first();
+        $cliente = DB::table('clientes')->where('id_cliente', '=', $venda->cliente_id)->first();
+        $itens_venda = DB::table('itens_venda')->where('venda_id', '=', $this->getId_venda())->get();
+        $produtos = DB::table('produtos')->get();
+
+        if ($venda->forma_pagamento == 'interno') {
+            DB::table('vendas')->where('id_venda', '=', $this->getId_venda())->update([
+                'status' => '0'
+            ]);
+
+            foreach ($produtos as $produto) {
+                foreach ($itens_venda as $item) {
+                    if ($item->produto_id == $produto->id_produto) {
+                        DB::table('produtos')->where('id_produto', '=', $item->produto_id)->update([
+                            'quantidade' => ($produto->quantidade + $item->quantidade)
+                        ]);
+                    }
+                }
+            }
+
+            DB::table('clientes')->where('id_cliente', '=', $venda->cliente_id)->update([
+                'credito' => ($cliente->credito + $venda->valor_total),
+                'credito_utilizado' => ($cliente->credito_utilizado - $venda->valor_total)
+            ]);
+
+            $this->setResposta('excluido_credito');
+        } else {
+            DB::table('vendas')->where('id_venda', '=', $this->getId_venda())->update([
+                'status' => '0'
+            ]);
+
+            foreach ($produtos as $produto) {
+                foreach ($itens_venda as $item) {
+                    if ($item->produto_id == $produto->id_produto) {
+                        DB::table('produtos')->where('id_produto', '=', $item->produto_id)->update([
+                            'quantidade' => ($produto->quantidade + $item->quantidade)
+                        ]);
+                    }
+                }
+            }
+            $this->setResposta('excluido');
         }
     }
 }

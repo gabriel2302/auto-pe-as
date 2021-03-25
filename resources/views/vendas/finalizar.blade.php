@@ -26,63 +26,72 @@
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <input type="hidden" id="url_form" name="url_form" value="{{route('vendas-finalizar')}}">
                     @foreach($vendas as $venda)
+                    <input type="hidden" id="id_venda" name="id_venda" value="{{$venda->id_venda}}">
                     <div id="campos-cadastro">
                         <div class="row">
-                            <input type="hidden" name="usuario_id" value="{{session('usuario_id')}}">
-                            <div class="form-group col-md-7">
+                            <div class="form-group col-md-9">
                                 <label for="cliente_id">Cliente</label>
-                                <select class="form-control" id="cliente_id" name="cliente_id" disabled>
+                                <select class="form-control" id="cliente_id" name="cliente_id" readonly>
                                     @foreach($clientes as $cliente)
                                     <option value="{{ $cliente->id_cliente }}" {{ $cliente->id_cliente==$venda->cliente_id?'selected':'' }}>{{ $cliente->razao_social }} - CPF/CNPJ: {{ $cliente->cpf_cnpj }}</option>
                                     @endforeach
                                 </select>
                             </div>
-
-                            <div class="form-group col-md-2">
-                                <label for="desconto">Desconto (%)</label>
-                                <input type="number" class="form-control" id="desconto" name="desconto" min="0" step="0.01" value="{{$venda->desconto}}" readonly>
+                            <div class="form-group col-md-3">
+                                <label for="forma-pagamento">Forma de pagamento</label>
+                                <select class="form-control" id="forma-pagamento" name="forma_pagamento" onchange="verificaPagamento()">
+                                    <option value="">Selecione</option>
+                                    <option value="credito">Cartão de crédito</option>
+                                    <option value="debito">Cartão de débito</option>
+                                    <option value="interno">Crédito interno</option>
+                                    <option value="dinheiro">Dinheiro</option>
                                 </select>
                             </div>
-
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label>Desconto (%)</label>
+                                <input type="number" class="form-control" value="{{$venda->desconto}}" readonly>
+                            </div>
                             <div class="col-md-3 form-group">
                                 <label for="valor-total">Valor total da compra</label>
-                                <input type="number" class="form-control" id="valor-total" min="0.00" step="0.01" name="valor_total" readonly>
+                                <input type="number" class="form-control" id="valor-total" min="0.00" step="0.01" name="valor_total" value="{{$venda->valor_total}}" readonly>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="valor-recebido">Valor recebido</label>
+                                <input type="number" class="form-control" id="valor-recebido" min="{{$venda->valor_total}}" step="0.01" name="valor_recebido" onchange="atualizaTroco()" readonly>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="troco">Troco</label>
+                                <input type="number" class="form-control" id="troco" min="0.00" step="0.01" name="troco" readonly>
                             </div>
                         </div>
                         <div id="secao-produtos">
                             @foreach($vendas_produtos as $venda_produto)
-                            <div class="row" id="node_produto_1">
-                                <div class="form-group col-md-5">
-                                    <label for="produto">Produto</label>
-                                    <select class="form-control" id="produto1" name="produto[1][produto_id]" disabled onchange="preencheDados('produto1', 'valor-unitario1', 'quantidade1', 'valor-total1')">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Produto</label>
+                                    <select class="form-control" disabled>
                                         <option value="">Selecione</option>
                                         @foreach($produtos as $produto)
-                                        <option value="{{ $produto->id_produto }}" data-produto1="{{ $produto->nome }}" {{ $produto->id_produto==$venda_produto->produto_id?'selected':'' }}>{{ $produto->nome }}</option>
+                                        <option value="{{ $produto->id_produto }}" {{ $produto->id_produto==$venda_produto->produto_id?'selected':'' }}>{{ $produto->nome }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="col-md-2">
-                                    <label for="quantidade">Quantidade</label>
-                                    <input type="number" class="form-control" id="quantidade1" min="1" step="1" name="produto[1][quantidade]" value="{{$venda_produto->quantidade}}" onchange="atualizaValor('valor-total1', 'valor-unitario1', 'quantidade1')" readonly>
+                                    <label>Quantidade</label>
+                                    <input type="number" class="form-control" value="{{$venda_produto->quantidade}}" readonly>
                                 </div>
 
                                 <div class="col-md-2">
-                                    <label for="valor-unitario">Valor unitário</label>
-                                    <input type="number" class="form-control" id="valor-unitario1" name="produto[1][valor_unitario]" value="{{$venda_produto->valor_unitario}}" readonly>
+                                    <label>Valor unitário</label>
+                                    <input type="number" class="form-control" value="{{$venda_produto->valor_unitario}}" readonly>
                                 </div>
 
                                 <div class="col-md-2">
-                                    <label for="valor-total">Valor total</label>
-                                    <input type="number" class="form-control valor-total" id="valor-total1" name="produto[1][valor_total]" value="{{$venda_produto->valor_total}}" readonly>
-                                    <input type="hidden" name="node_produto[]" value="1">
-                                </div>
-
-                                <div class="col-md-1">
-                                    <label for="xxx" class="color-white">x</label>
-                                    <button class="btn bg-danger" style="float: right;" title="Remover produto" onclick="modalRemover('produto1', 'data-produto1', 'node_produto_1')">
-                                        <i class="fa fa-trash" style="margin-right: 0;"></i>
-                                    </button>
+                                    <label>Valor total</label>
+                                    <input type="number" class="form-control valor-total" value="{{$venda_produto->valor_total}}" readonly>
                                 </div>
                             </div>
                             @endforeach
@@ -90,18 +99,10 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <button class="btn bg-success" style="float: right; margin-top: 10px" title="Adicionar produto" onclick="adicionaProduto()">
-                                    <i class="fa fa-plus" style="margin-right: 0;"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
                                 <div class="btn-group pull-right mt-10" role="group">
                                     <a href="#" class="btn bg-black btn-wide" data-toggle="modal" data-target="#modal-voltar"><i class="fa fa-arrow-left"></i> Voltar</a>
                                     <a href="#" class="btn bg-danger btn-wide" data-toggle="modal" data-target="#modal-limpar"><i class="fa fa-eraser"></i> Limpar</a>
-                                    <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar"><i class="fa fa-arrow-right"></i> Efetuar</button>
+                                    <button type="button" class="btn btn-primary btn-wide" id="btn-cadastrar"><i class="fa fa-arrow-right"></i> Finalizar</button>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +121,7 @@
                 <h4 class="modal-title" id="modalVoltarLabel">Mensagem <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></h4>
             </div>
             <div class="modal-body">
-                <p>Você tem certeza que deseja cancelar essa venda e retornar para a página de vendas?</p>
+                <p>Você tem certeza que deseja retornar para a página de vendas sem finalizar essa venda?</p>
             </div>
             <div class="modal-footer">
                 <div class="btn-group" role="group">
@@ -152,10 +153,6 @@
     </div>
 </div>
 
-<div id="modal-remover">
-
-</div>
-
 <div class="modal fade" id="modal-limpar" tabindex="-1" role="dialog" aria-labelledby="modalLimparLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -168,7 +165,7 @@
             <div class="modal-footer">
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-gray btn-wide btn-rounded" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>
-                    <a href="#" onclick="document.getElementById('form-cadastrar-produto').reset()" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i> Limpar</a>
+                    <a href="#" onclick="limparCampos()" data-dismiss="modal" class="btn btn-danger btn-wide btn-rounded"><i class="fa fa-eraser"></i> Limpar</a>
                 </div>
                 <!-- /.btn-group -->
             </div>
@@ -177,15 +174,33 @@
 </div>
 
 <script>
-    function preencheDados(campo_produto, campo_valor, campo_quantidade, campo_total) {
-        var id_produto = document.getElementById(campo_produto).value;
+    function limparCampos() {
+        document.getElementById('forma-pagamento').value = '';
+        document.getElementById('valor-recebido').value = '';
+        document.getElementById('troco').value = '';
 
-        if (id_produto == '') {
-            document.getElementById(campo_valor).value = '';
-            document.getElementById(campo_total).value = '';
-            document.getElementById(campo_quantidade).value = '';
-            document.getElementById(campo_quantidade).setAttribute('readonly', 'true');
-        } else {
+        document.getElementById('valor-recebido').setAttribute('readonly', 'true');
+        document.getElementById('troco').setAttribute('readonly', 'true');
+    }
+
+    function verificaPagamento() {
+        var cliente_id = document.getElementById('cliente_id').value;
+        var forma_pagamento = document.getElementById('forma-pagamento').value;
+        var valor_total = document.getElementById('valor-total').value;
+
+        if (forma_pagamento == '') {
+            document.getElementById('valor-recebido').value = '';
+            document.getElementById('troco').value = '';
+
+            document.getElementById('valor-recebido').setAttribute('readonly', 'true');
+            document.getElementById('troco').setAttribute('readonly', 'true');
+        } else if (forma_pagamento == 'credito' || forma_pagamento == 'debito') {
+            document.getElementById('valor-recebido').value = document.getElementById('valor-total').value;
+            document.getElementById('troco').value = '0,00';
+
+            document.getElementById('valor-recebido').setAttribute('readonly', 'true');
+            document.getElementById('troco').setAttribute('readonly', 'true');
+        } else if (forma_pagamento == 'interno') {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -193,99 +208,67 @@
             });
 
             $.ajax({
-                url: "/produtos/info_produto",
+                url: "/clientes/info_cliente",
                 method: 'post',
                 data: {
-                    'id_produto': id_produto,
+                    'id_cliente': cliente_id,
                 },
                 success: function(dados) {
                     var data = JSON.parse(dados);
-                    document.getElementById(campo_valor).value = '';
-                    document.getElementById(campo_total).value = '';
-                    document.getElementById(campo_quantidade).value = '';
+                    if (Number(valor_total) > Number(data.clientes[0]['credito'])) {
+                        var modal_texto = document.getElementById('modal-resposta-texto');
+                        modal_texto.innerHTML = '';
+                        modal_texto.innerHTML = 'Desculpe, mas esse cliente possui apenas R$ ' + data.clientes[0]['credito'] + ' disponível para compras a prazo! Por favor, selecione outra forma de pagamento.';
 
-                    document.getElementById(campo_valor).value = data.info_produto[0]['valor'];
-                    document.getElementById(campo_quantidade).setAttribute('max', data.info_produto[0]['quantidade']);
-                    document.getElementById(campo_quantidade).removeAttribute('readonly');
+                        document.getElementById('forma-pagamento').value = '';
+                        document.getElementById('valor-recebido').value = '';
+                        document.getElementById('troco').value = '';
+
+                        document.getElementById('valor-recebido').setAttribute('readonly', 'true');
+                        document.getElementById('troco').setAttribute('readonly', 'true');
+
+                        $('#modal-resposta').modal({
+                            show: true
+                        });
+
+                    } else {
+                        document.getElementById('valor-recebido').value = document.getElementById('valor-total').value;
+                        document.getElementById('troco').value = '0,00';
+
+                        document.getElementById('valor-recebido').setAttribute('readonly', 'true');
+                        document.getElementById('troco').setAttribute('readonly', 'true');
+                    }
+
+
+
                 },
                 error: function(response) {}
             });
+        } else if (forma_pagamento == 'dinheiro') {
+            document.getElementById('valor-recebido').value = '';
+            document.getElementById('troco').value = '';
+
+            document.getElementById('valor-recebido').removeAttribute('readonly');
+            document.getElementById('troco').setAttribute('readonly', 'true');
         }
     }
 
-    function atualizaValor(campo_total, campo_unitario, campo_quantidade) {
-        document.getElementById(campo_total).value = (document.getElementById(campo_quantidade).value * document.getElementById(campo_unitario).value).toFixed(2)
-        var valor_total = document.getElementsByClassName('valor-total');
-        var valor = Number(0.00);
-        Array.prototype.forEach.call(valor_total, function(vl) {
-            valor2 = Number(vl.value);
-            valor = valor + valor2;
-        });
-        if (document.getElementById('desconto').value != '' || document.getElementById('desconto').value > 0) {
-            desconto = (Number(document.getElementById('desconto').value)) / 100;
-            valor_com_desconto = valor - (valor.toFixed(2) * desconto);
-            document.getElementById('valor-total').value = valor_com_desconto.toFixed(2);
+    function atualizaTroco() {
+        var valor_total = Number(document.getElementById('valor-total').value);
+        var valor_recebido = Number(document.getElementById('valor-recebido').value);
+
+        if (valor_recebido < valor_total) {
+            var modal_texto = document.getElementById('modal-resposta-texto');
+            modal_texto.innerHTML = '';
+            modal_texto.innerHTML = 'O valor recebido não pode ser menor que o valor da compra!';
+            document.getElementById('valor-recebido').value = document.getElementById('valor-total').value;
+            document.getElementById('troco').value = '0,00';
+            $('#modal-resposta').modal({
+                show: true
+            });
         } else {
-            document.getElementById('valor-total').value = valor.toFixed(2);
+            document.getElementById('troco').value = ((valor_recebido) - (valor_total)).toFixed(2);
         }
-    }
-
-    function atualizaValorTotal() {
-        var valor_total = document.getElementsByClassName('valor-total');
-        var valor = Number(0.00);
-        Array.prototype.forEach.call(valor_total, function(vl) {
-            valor2 = Number(vl.value);
-            valor = valor + valor2;
-        });
-
-        if (document.getElementById('desconto').value != '' || document.getElementById('desconto').value > 0) {
-            desconto = (Number(document.getElementById('desconto').value)) / 100;
-            valor_com_desconto = valor - (valor.toFixed(2) * desconto);
-            document.getElementById('valor-total').value = valor_com_desconto.toFixed(2);
-        } else {
-            document.getElementById('valor-total').value = valor.toFixed(2);
-        }
-    }
-
-    function adicionaProduto() {
-        var id_node = Math.random();
-        var produto = '\
-        <div class="row" id="node_produto_' + id_node + '">\
-            <div class="form-group col-md-5">\
-                <label for="produto">Produto</label>\
-                <select class="form-control" id="produto' + id_node + '" name="produto[' + id_node + '][produto_id]" onchange="preencheDados(\'produto' + id_node + '\', \'valor-unitario' + id_node + '\', \'quantidade' + id_node + '\', \'valor-total' + id_node + '\')">\
-                    <option value="">Selecione</option>\
-                    @foreach($produtos as $produto)\
-                    <option value="{{ $produto->id_produto }}" data-produto' + id_node + '="{{ $produto->nome }}">{{ $produto->nome }}</option>\
-                    @endforeach\
-                </select>\
-            </div>\
-\
-            <div class="col-md-2">\
-                <label for="quantidade">Quantidade</label>\
-                <input type="number" class="form-control" id="quantidade' + id_node + '" min="1" step="1" name="produto[' + id_node + '][quantidade]" onchange="atualizaValor(\'valor-total' + id_node + '\', \'valor-unitario' + id_node + '\', \'quantidade' + id_node + '\')" readonly>\
-            </div>\
-\
-            <div class="col-md-2">\
-                <label for="valor-unitario">Valor unitário</label>\
-                <input type="number" class="form-control" id="valor-unitario' + id_node + '" name="produto[' + id_node + '][valor-unitario]" readonly>\
-            </div>\
-\
-            <div class="col-md-2">\
-                <label for="valor-total">Valor total</label>\
-                <input type="number" class="form-control valor-total" id="valor-total' + id_node + '" name="produto[' + id_node + '][valor-total]" readonly>\
-                <input type="hidden" name="node_produto[]" value="' + id_node + '">\
-            </div>\
-\
-            <div class="col-md-1">\
-                <label for="xxx" class="color-white">x</label>\
-                <button class="btn bg-danger" style="float: right;" title="Remover produto" onclick="modalRemover(\'produto' + id_node + '\', \'data-produto' + id_node + '\', \'node_produto_' + id_node + '\')">\
-                    <i class="fa fa-trash" style="margin-right: 0;"></i>\
-                </button>\
-            </div>\
-        </div>\
-        ';
-        document.getElementById('secao-produtos').insertAdjacentHTML('beforeend', produto);
     }
 
     function modalRemover(campo_produto, nome_produto, node_produto) {
@@ -352,63 +335,59 @@
                 }
             });
 
-            $('#btn-cadastrar').html('<i class="fa fa-arrow-right"></i> Efetuando...');
-            var url_atual = document.getElementById('url_form').value;
-            var modal_texto = document.getElementById('modal-resposta-texto');
+            var forma_pagamento = document.getElementById('forma-pagamento').value;
+            if (forma_pagamento == '') {
+                var modal_texto = document.getElementById('modal-resposta-texto');
+                modal_texto.innerHTML = '';
+                modal_texto.innerHTML = 'É necessário selecionar uma forma de pagamento para finalizar a venda!';
+                $('#modal-resposta').modal({
+                    show: true
+                });
+            } else {
+                var valor_total = Number(document.getElementById('valor-total').value);
+                var valor_recebido = Number(document.getElementById('valor-recebido').value);
 
-            $.ajax({
-                url: "" + url_atual + "",
-                method: 'post',
-                data: $('#form-cadastrar-produto').serialize(),
-                success: function(response) {
-
-                    if (response.resposta == 'cadastrado') {
-                        modal_texto.innerHTML = '';
-                        modal_texto.innerHTML = 'Venda efetuada com sucesso! Por favor, peça para o cliente dirigir-se ao caixa e finalizar o pagamento.';
-                        $('#modal-resposta').modal({
-                            show: true
-                        });
-                        document.getElementById("form-cadastrar-produto").reset();
-                        $('#btn-cadastrar').html('<i class="fa fa-arrow-right"></i> Efetuar');
-                        window.location.href = "/vendas";
-                    } else {
-                        if (response.resposta == 'vazio') {
-                            modal_texto.innerHTML = '';
-                            modal_texto.innerHTML = 'Por favor, verifique se todos os campos estão preenchidos!';
-                            $('#modal-resposta').modal({
-                                show: true
-                            });
-                            $('#btn-cadastrar').html('<i class="fa fa-arrow-right"></i> Efetuar');
-                        } else {
-                            if (response.resposta == 'desconto_maior') {
-                                modal_texto.innerHTML = '';
-                                modal_texto.innerHTML = 'Desculpe, mas não é possível utilizar desconto maior que o permitido!';
-                                $('#modal-resposta').modal({
-                                    show: true
-                                });
-                                $('#btn-cadastrar').html('<i class="fa fa-arrow-right"></i> Efetuar');
-                            } else {
-                                if (response.resposta == 'produto_vazio') {
-                                    modal_texto.innerHTML = '';
-                                    modal_texto.innerHTML = 'Por favor, verifique se ao menos um produto está selecionado e seus campos estão todos preenchidos para efetuar a venda!';
-                                    $('#modal-resposta').modal({
-                                        show: true
-                                    });
-                                    $('#btn-cadastrar').html('<i class="fa fa-arrow-right"></i> Efetuar');
-                                }
-                            }
-                        }
-                    }
-                },
-                error: function(response) {
+                if (valor_recebido < valor_total) {
+                    var modal_texto = document.getElementById('modal-resposta-texto');
                     modal_texto.innerHTML = '';
-                    modal_texto.innerHTML = 'Erro: ' + response.responseJSON.message;
+                    modal_texto.innerHTML = 'O valor recebido não pode ser menor que o valor da compra!';
                     $('#modal-resposta').modal({
                         show: true
                     });
-                    $('#btn-cadastrar').html('<i class="fa fa-arrow-right"></i> Efetuar');
+                } else {
+                    $('#btn-cadastrar').html('<i class="fa fa-arrow-right"></i> Finalizando...');
+                    var url_atual = document.getElementById('url_form').value;
+                    var modal_texto = document.getElementById('modal-resposta-texto');
+
+                    $.ajax({
+                        url: "" + url_atual + "",
+                        method: 'post',
+                        data: $('#form-cadastrar-produto').serialize(),
+                        success: function(response) {
+
+                            if (response.resposta == 'cadastrado') {
+                                modal_texto.innerHTML = '';
+                                modal_texto.innerHTML = 'Venda finalizada com sucesso!';
+                                $('#modal-resposta').modal({
+                                    show: true
+                                });
+                                document.getElementById("form-cadastrar-produto").reset();
+                                $('#btn-cadastrar').html('<i class="fa fa-arrow-right"></i> Finalizar');
+                                window.location.href = "/vendas";
+                            }
+                        },
+                        error: function(response) {
+                            modal_texto.innerHTML = '';
+                            modal_texto.innerHTML = 'Erro: ' + response.responseJSON.message;
+                            $('#modal-resposta').modal({
+                                show: true
+                            });
+                            $('#btn-cadastrar').html('<i class="fa fa-arrow-right"></i> Finalizar');
+                        }
+                    });
+
                 }
-            });
+            }
         });
     });
 </script>
